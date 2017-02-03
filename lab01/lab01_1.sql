@@ -17,4 +17,4 @@ SELECT * from EMPLOYEES WHERE PHONE_NUMBER NOT LIKE '515.%%%.%%%';
 /* list the names of the employees who are in the finance department. 
    Try to format the names as “firstname lastname” 
    using concatenation (i.e., || ) and order them alphabetically. */
-SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID = 100 ORDER BY FIRST_NAME;
+SELECT FIRST_NAME, LAST_NAME FROM EMPLOYEES WHERE DEPARTMENT_ID = 100 ORDER BY FIRST_NAME;
