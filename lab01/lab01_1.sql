@@ -20,7 +20,9 @@ SELECT * from EMPLOYEES WHERE PHONE_NUMBER NOT LIKE '515.%%%.%%%';
 SELECT FIRST_NAME, LAST_NAME FROM EMPLOYEES WHERE DEPARTMENT_ID = 100 ORDER BY FIRST_NAME;
 
 /* list the city, state and country name for all locations in the Asian region. */
-SELECT CITY, STATE_PROVINCE, COUNTRY_ID.COUNTRY_NAME FROM LOCATIONS WHERE COUNTRY.COUNTRY_ID.REGION_ID.REGION_NAME = ASIA;
+SELECT city, state_province, country_name 
+FROM LOCATIONS, COUNTRIES, REGIONS
+WHERE COUNTRIES.country_id = LOCATIONS.country_id AND REGIONS.region_id = COUNTRIES.region_id AND REGIONS.region_name LIKE 'Asia';
 
 /* list the locations that have no state or province specified in the database */
-SELECT * FROM LOCATIONS where STATE_PROVINCE = NULL;
+SELECT * FROM LOCATIONS where STATE_PROVINCE IS NULL;
