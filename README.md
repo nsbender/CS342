@@ -4,9 +4,11 @@
 
 https://github.com/YourGitgubID/cs342
 &nbsp;&nbsp;01introduction/
-&nbsp;&nbsp;&nbsp;&nbsp;your guide 1 solution file(s) (i.e., guide01.txt)...
-&nbsp;&nbsp;&nbsp;&nbsp;your lab 1 solution files (i.e., lab01_1.sql, lab01_2.sql)...
-&nbsp;&nbsp;&nbsp;&nbsp;your homework 1 solution files (i.e., homework01_1.txt, homework01_2.txt)...
-&nbsp;&nbsp;&nbsp;&nbsp;more unit sub-directories, matching the names in the course schedule (i.e., 02modeling, 03modeling, ...)
+&nbsp;&nbsp;&nbsp;&nbsp;guide01.txt
+&nbsp;&nbsp;&nbsp;&nbsp;lab01/
+&nbsp;&nbsp;&nbsp;&nbsp;homework01/
+&nbsp;&nbsp;02modeling/
+&nbsp;&nbsp;03modeling/
+&nbsp;&nbsp;...
 &nbsp;&nbsp;project/
-&nbsp;&nbsp;&nbsp;&nbsp;your project solution files...
+&nbsp;&nbsp;&nbsp;&nbsp;project files
