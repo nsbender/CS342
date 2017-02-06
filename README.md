@@ -1,1 +1,12 @@
-# CS342 SPring 2017
+# CS342 Spring 2017
+
+--- File Structure ---
+
+https://github.com/YourGitgubID/cs342
+    01introduction/
+        your guide 1 solution file(s) (i.e., guide01.txt)...
+        your lab 1 solution files (i.e., lab01_1.sql, lab01_2.sql)...
+        your homework 1 solution files (i.e., homework01_1.txt, homework01_2.txt)...
+    more unit sub-directories, matching the names in the course schedule (i.e., 02modeling, 03modeling, ...)
+    project/
+        your project solution files...
