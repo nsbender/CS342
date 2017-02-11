@@ -1,0 +1,37 @@
+--- 2.13 ---
+
+Design a schema and show a sample database for [Slate Permutate], using the
+notation of Figures 1.2 and 2.1. What types of additional information and
+constraints would you like to represent in the schema? Think of several
+users of your database, and design a view for each.
+
+COLLEGE(COLLEGE_ID, School_name)
+COURSE(COURSE_ID, Credits, Title)
+SECTION(SECTION_ID, sTime, eTime, Professor_name, Week_days, Letter)
+COURSE_SECTION(COURSE_ID, SECTION_ID)
+USER(USER_ID, User_name, User_password, Term)
+USER_SECTIONS(USER_ID, SECTION_ID)
+
+With this schema, a user's courses would be stored with their own unique
+ID in the USER_SECTIONS table. Additionally, the application would only allow
+users to access rows in that table with their own USER_ID.
+
+The COLLEGE table's columns are self explanatory. The COLLEGE_ID is needed
+for the application to determine which college's courses are needed, and the
+School_name is needed simply for display purposes.
+
+The COURSE table defines courses that are offered at the school, each with its
+own unique ID and name, as well as the number of credits it fulfills for the
+student.
+
+SECTIONs are 'instances' of COURSEs and are the actualy units that are stored
+in the user's list of courses. SECTIONs have a start time and end time for each
+day, as well as a list of days that the course happens. This list could be
+stored as a string such as "MWF" or "TuTh", and that string would be parsed by
+the application. The professor's name and section letter are also present for
+display purposes.
+
+The COURSE_SECTION table is what connects the COURSES to each of their
+SECTIONs. Each row in that table would be a section with the ID of the course
+that it is an instance of. This makes it to find all sections of a course with
+a single query. (Ex: SELECT * FROM COURSE_SECTION WHERE COURSE_ID = "CS342";)
