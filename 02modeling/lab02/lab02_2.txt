@@ -1,0 +1,20 @@
+/* lab02_2 nsb2 */
+
+/* ---------PART A--------- */
+
+It is possible to require all moves to have a score of more than 1000 votes
+if they are to have a non-NULL score. That constraint would be defined as:
+
+ADD CONSTRAINT ScoreVote;
+CHECK (score IS NULL or votes > 1000);
+
+This would be defined as either an ALTERation to the Movie table, or would
+be added at the time of the creation of the table.
+
+/* ---------PART B--------- */
+
+If you plan to modify the constraints of your table during its lifetime, then
+you don't want to set all rules/constraints for it in its definition. Otherwise
+you would need to change its definition regularly.
+
+This has huge implications for your database, especially if a mistake is made.
