@@ -1,0 +1,13 @@
+Nate Bender
+CS342 - Databases Final Project Proposal
+
+The database that I plan to design is one relating to Michigan breweries and their beers. While it may sound trivial initially, I believe this could be relevant data for both beer enthusiasts as well as restaurants, grocery stores, and other berewers. Beer brewing, like other food and drink manufacturing, is a complicated process. Thus, this domain lends its self well to a database. Several tables would be required to keep track of information such as 
+
+-Individual Breweries
+-Their Beers
+-Ingredients/recipies
+-Regions in Michigan
+-Distributors
+
+and potentially more as the design is developed. There are other similar systems that currently exist, but none of
+them go into detail about distribution or recipies (Not all breweries disclose this information).
