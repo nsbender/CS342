@@ -2,6 +2,7 @@
 --
 -- CS 342, Spring, 2017
 -- kvlinden
+-- Completed by Nate Bender
 
 drop table Person;
 drop table HouseHold;
@@ -20,7 +21,14 @@ create table Person (
 	title varchar(4),
 	firstName varchar(15),
 	lastName varchar(15),
-	membershipStatus char(1) CHECK (membershipStatus IN ('m', 'a', 'c'))
+	mentorID integer,
+	role varchar(30),
+	membershipStatus char(1) CHECK (membershipStatus IN ('m', 'a', 'c'	)),
+	
+	/* Be sure to prevent and NULLify invalid references */
+	FOREIGN KEY(mentorID) REFERENCES Person(ID) ON DELETE SET NULL,
+	FOREIGN KEY(householdID) REFERENCES HouseHold(ID) ON DELETE SET NULL,
+	CHECK (mentorID >= 0 OR mentorID IS NULL)
 	);
 
 
