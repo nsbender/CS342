@@ -38,7 +38,7 @@ CREATE TABLE Order(
 -- since it only exists as a joint table
 CREATE TABLE OrderItem(
 	order_number integer,
-	item_num integer,
+	item_number integer,
 	quantity integer,
 	FOREIGN KEY (order_number) REFERENCES Order(order_number) ON DELETE SET NULL,
 	FOREIGN KEY (item_number) REFERENCES Item(item_number) ON DELETE SET NULL,
@@ -69,7 +69,7 @@ CREATE TABLE Shipment(
 CREATE TABLE Warehouse(
 	warehouse_number integer NOT NULL,
 	city varchar(32) NOT NULL,
-	PRIMARY KEY (warehouse_num)
+	PRIMARY KEY (warehouse_number)
 );
 
 --- Sample Data ---
@@ -119,7 +119,7 @@ a social security number, but not only is that insecure but also esentially just
 
 -- All orders from Nate along with date, and amount. Ordered by date
 SELECT Order.order_date, Order.order_amount FROM Order -- and join it with the Customer
-JOIN Customer ON Order.customer_number = Customer.customer_nuber -- when the order cust_id matches the cust_id
+JOIN Customer ON Order.customer_number = Customer.customer_number -- when the order cust_id matches the cust_id
 WHERE Customer.customer_name = 'Nate Bender'
 ORDER BY Order.order_date;  -- the sort it by date
 
