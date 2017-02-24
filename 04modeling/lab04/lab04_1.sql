@@ -23,6 +23,16 @@ CREATE TABLE AltPerson (
     teamTime varchar(10)
 	);
 
+-- The original relation is not well designed for multiple reasons.
+-- It has no primary key, for the AltPerson,
+-- Mentor should be its own table, and the AltPerson should point to
+--   its Mentor via a foregin key (mentorId)
+-- Team should also be its own Table with a primary teamID key added,
+-- but teamRole could be left as a key in AltPerson.
+
+-- With these two additional tables, the schema would be normalized,
+-- have no redundant data, and would meet, 1NF, 2NF, 
+	
 INSERT INTO AltPerson VALUES (0, 'Ramez', 'v', 1, 'Shamkant', 'm', 'elders', 'trainee', 'Monday');
 INSERT INTO AltPerson VALUES (1, 'Shamkant', 'm', NULL, NULL, NULL, 'elders', 'chair', 'Monday');
 INSERT INTO AltPerson VALUES (1, 'Shamkant', 'm', NULL, NULL, NULL, 'executive', 'protem', 'Wednesday');

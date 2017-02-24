@@ -14,6 +14,17 @@ CREATE TABLE PersonTeam (
 	personName varchar(10),
     teamName varchar(10)
 	);
+	
+/* PersonTeam satisfies the following normal forms
+ * 1NF - Each attribute does contain only atomic values
+ * 2NF - No non-prime attributes have part-key dependencies on any of these candidate keys.
+ * 3NF -  "Every non-key attribute provides a fact about the key, the whole key,
+ *   and nothing but the key. So help me Codd"
+ * and thus meets
+ * BCNF - All superkeys are candidate keys
+ * and
+ * 4NF becuase there are no non-trivial multivalued dependencies other than a candidate key.
+*/
 
 CREATE TABLE PersonVisit (
 	personName varchar(10),
