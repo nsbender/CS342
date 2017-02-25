@@ -1,0 +1,29 @@
+Nate Bender, CS342
+Homework03_1
+
+--- A ---
+
+A flight is a particular journey that happens every week on certain
+days and is always done by the same airline.
+A flight leg is a nonstop journey
+between to airports and is identified by a flight number and leg number. Since
+the flight is a regularly repeating occurrence, the flight leg can have
+exact arrival and departure times on that particular weekday.
+A flight leg instance is a leg that occurs or has occurred on a particular date.
+A leg, much like a flight, is repeatable.
+
+The real difference between these objects is the distance travelled in each
+(flight vs leg) and that the leg instances have a particular, non-repeating date
+on which they occur.
+
+--- B ---
+
+Since these objects in question are weak entities, and they still need some
+type of identification, they are given a 'partial key' - a way of linking it to
+the parent entity.
+
+--- C ---
+
+Seats are a part of reservation on a leg_instance, and not on a leg or flight
+because, reservations change from instance to instance. The entire collection
+of seats changes between leg_instances, so we need to track that.
