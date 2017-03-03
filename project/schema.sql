@@ -45,8 +45,8 @@ CREATE TABLE Rating(
 );
 
 CREATE TABLE DistributorBeer(
-  beerId integer REFERENCES Beer(id) ON DELETE CASCADE,
   distributorId integer REFERENCES Distributor(id) ON DELETE CASCADE,
+  beerId integer REFERENCES Beer(id) ON DELETE CASCADE,
   unitSize integer, -- 6 for six-pack, 12 for twelve-pack, etc
   cost numeric
 );
