@@ -1,0 +1,29 @@
+The sample data that I've used in my database has come from a variety of sources.
+For example, the example breweries are ones that I have knowledge of, but the data
+about them has been sourced either from their own websites or wikipedia.org for the
+larger ones that have parent companies. The example beers were pulled either from
+their brewery's website, which often included the ABV, IBU, and type of beer. Otherwise,
+I obtained quite a bit of data from untappd.com, which is a beer logging service, as
+well as a sort of database in itself. It almost always has all the data necessary, apart
+from a few beer's IBUs (which isn't relevan to all beer, hence why some entries have a
+NULL value in the IBU column). Distributors and their data were sourced from Google Maps.
+Ratings were sourced from Untappd.com and beeradvocate.com, which are both community
+sourced beer rating services. beeradvocate also provides professional ratings. Ingredients
+were sourced from my own knowledge of brewing (hence why the list isn't extensive) and
+will be expanded in the future from a more official source. Beers as sold by certain
+Distributors is all ficticious data (albiet possible). This may eventually be sourced
+by community input, or from retailer/Distributors' websites. Beer Ingredients are pulled
+from the brewery's website descriptions of the beer.
+
+My database is currently in BCNF as it has the following attributes:
+1 - Each attribute of every table is atomic and only contains one value of its
+  domain.
+2 - No table has dependencies on more than one of its candidate keys.
+3 - Each tables attributes are determined only by their candidate keys
+  and not by any non-prime attributes.
+3.5 - No tables have overlapping candidate keys.
+
+I have chosen BCNF for my database since the concept of beers and breweries
+can easily be broken up into multiple tables each with their own non-overlapping
+attributes, and they can easily reference eachother without having too many functionl
+dependencies.
