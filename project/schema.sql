@@ -12,14 +12,14 @@ CREATE TABLE Beer(
 CREATE TABLE Brewery(
   id integer PRIMARY KEY,
   name varchar(64),
-  founded date,
+  yearFounded intege,
   country varchar(32),
   city varchar(32),
-  brandId integer REFERENCES Brand(id),
+  parentId integer REFERENCES ParentCompany(id),
   website varchar(128)
 );
 
-CREATE TABLE Brand(
+CREATE TABLE ParentCompany(
   id integer PRIMARY KEY,
   name varchar(64),
   country varchar(32)
