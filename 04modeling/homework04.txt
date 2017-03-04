@@ -27,4 +27,23 @@ b. Apply normalization until you cannot decompose the relations further. State t
 	typeId -> name, listPrice
 	authorId -> name, affiliation
 	
+
+2. Consider the relation [with the data listed in the shown table]:
+
+	BOOK (Book_Name, Author, Edition, Year)
+
+a. Based on a common-sense understanding of the above data, what are the possible candidate keys of this 
+relation?
+
+	Book_Name and Author alone do not create a candidate key since there are possible repeats from between
+	editiions that have the same author and title. Possilbe candidate keys include:
+		Book_Name, Author, Edition
+		Book_Name, Author, Copyright_year
+		Book_Name, Author, Edition, Copyright_year
+		
+b. Justify that this relation has the MVD { Book } →→ { Author } | { Edition, Year }.
+
+	Because there are two different editions, two differnt years, and two authors there ends up being four
+	entries for one Book_Name.
 	
+c. 
