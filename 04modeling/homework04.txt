@@ -46,4 +46,7 @@ b. Justify that this relation has the MVD { Book } →→ { Author } | { Edition
 	Because there are two different editions, two differnt years, and two authors there ends up being four
 	entries for one Book_Name.
 	
-c. 
+c. 	What would be the decomposition of this relation based on the above MVD? Evaluate each resulting relation
+for the highest normal form it possesses.
+
+	
