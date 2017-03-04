@@ -1,0 +1,30 @@
+1. Consider the following relation for published books:
+
+  BOOK (Book_title, Author_name, Book_type, List_price, Author_affil, Publisher)
+
+Author_affil refers to the affiliation of author. Suppose the following dependencies exist:
+
+  Book_title → Publisher, Book_type
+  Book_type → List_price
+  Author_name → Author_affil
+
+a. What normal form is the relation in? Explain your answer.
+
+	All fields in this relation are atomic, and thus it is in at least 1NF.
+	It is not in 2NF, and thus 3NF or BCNF since there are functional dependencies based on candidate keys.
+
+b. Apply normalization until you cannot decompose the relations further. State the reasons behind each decomposition.
+
+	Book(id*, title, typeId**, publisherId**, AuthorId**)
+	Type(id*, name, listPrice)
+	Author(id* name, affiliation)
+	
+	This new schema is in BCNF, since all candidate keys determine the rest of the fields, and all
+	left hand sides are candidates. The new id fields make each index unique. There are no multivalued
+	dependencies as demonstrated below:
+	
+	bookId -> title, typeId, publisherId, authorId
+	typeId -> name, listPrice
+	authorId -> name, affiliation
+	
+	
