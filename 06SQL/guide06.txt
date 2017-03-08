@@ -1,0 +1,31 @@
+Advanced SQL (Section 7.1, continued) — Write sample queries that:
+
+Implement an inner join (Section 7.1.6).
+
+	SELECT Student.id, StudentTeam.studentID
+	FROM Student
+	INNER JOIN StudentTeam -- For the INTERSECTION of the two tables
+	ON Student.id = StudentTeam.studentID;
+
+Implement an outer join (Section 7.1.6).
+
+
+	SELECT Student.id, StudentTeam.studentID
+	FROM Student
+	OUTER JOIN StudentTeam -- For the UNION of the two tables
+	ON Student.id = StudentTeam.studentID;
+	
+
+Use an aggregate function (Section 7.1.7).
+
+	SELECT COUNT(id)
+	FROM Team
+	WHERE sectionId = 1;
+
+	-- To count the number of teams that exist in section 1
+
+Use grouping (Section 7.1.8).
+
+	SELECT *
+	FROM Team
+	GROUP BY sectionId;
