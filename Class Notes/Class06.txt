@@ -1,0 +1,10 @@
+-- This gives the intersection of the mentors and students, but isn't inclusive of the students without
+-- mentors
+
+SELECT s.firstName, s.lastName, m.firstName, m.lastName
+FROM Student s, Student m
+WHERE s.mentorId = m.id;
+
+SELECT s.firstName, s.lastName, m.firstName, m.lastName
+FROM Student s, Student m
+OUTER JOIN s;
