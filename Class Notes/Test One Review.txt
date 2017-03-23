@@ -1,0 +1,120 @@
+1-1a) Compare and contrast Data, Databases, DMBS, and IS
+	Data - Coded quantitative or qualitative values 
+	Databases - Collections of data, often from one particular source organized in a meaningful and
+		useful way.
+	DBMS - A piece of software that interacts with a user, usually via another application, to collect, access,
+	and organize data in a meaningful way.
+	Information Systems - Networks and people that have access to and use data, often stored in databases, for
+		a higher purpose such as studying or administration.		
+
+1-1b) A datastructure is a means of storing data such that it can only be acted upon in a certain way (via and API,
+	or methods of the datastructure) whereas a database's data can be acted upon in any way that a user chooses
+	to do so, and are allowed to do.
+	An algorithm is a means of acting upon a piece of data in such a way that it produces new meaningful data,
+	or modifies the original data.
+
+	A traditional file system stores data in individual containers (files) and stores them in a tree structure
+	comprised of directories. Files are addressed by the system, and pieces of data in a database are not. Both
+	rely on permissions for access, but databases are often more highly shared.
+
+1-1c) The stakeholders of a database are those whose data is stored in the database, the customers that rely on
+	that data, and the owners of the data. A company relies on data being stored for later use, but a customer
+	relies on the data being secured and only being used for its originally intended purpose.
+
+1-2a) Figure 2.1 is a diagram of a database's schema. A data model is an abstraction of a collection of data that
+	gives a conceptual understanding of the data's organization. A data model describes both the data objects
+	and the means by which they are connected.
+
+1-2b) The three schema architecture 
+	1: The physical level describes the way data is stored on physical storage and how it is addressed and
+	accessed.
+	2: The conceptual level describes the way the data is described, how it is connected, and how uses are able
+	to access the data. It obscures the means of physical storage and focuses on the logical data.
+	3: The external level is one or possibly more conceptual levels and gives each user or group of users a 
+	descrition of how the data is accessed based on their needs.
+
+1-2c) A typical web-based information system may have 3 or 4 layers. The first is the presentation layer, which is
+	a GUI or application that allows the user to interact with data. The second layer is the 
+	business logic layer, which communicates with the users input and processes it. The third is the database
+	services layer which includes the DBMS and is what the application interacts with to store and retrieve data
+
+2-1a) Who invented the relational data model? When and where did they do their work?
+	The relational Data Model was invented by EF Codd in the 60s and 70s, who worked for IBM.
+
+2-1b) 	Relation - The connection between tuples of data that all have the same type.
+	Attribute - An ordered pair of name and type. The value of an attribute must be valid according to its type
+	Domain - The entire range of valid values for a particular data type.
+	n-Tuple - A piece of data with n values contained within it.
+	NULL Value - A value that is neither True nor False, but rather unknown or not applicable
+	Primary Key - An attribute in a relation used to identify a particular row in that relation relative to all
+		other rows in that relation (i.e. a unique value per relation)
+	Foreign Key - An attribute in a relation that references a row in another relation with the same domain
+	Super Key - A combination of columns in a relation that can be used to uniquely identify any row in that
+		relation.
+	Referecing Record - Fields that can only refer to records from another table
+
+2-1c)Are tuples in a relation ordered? How about attribute values in a tuple? Explain why or why not.
+	Tuples in a record are not necessarily ordered and don't need to be, since the querys that retrieve records
+	are what order them and make them meaningful. The attributes of the tuple also do not need to be ordered in 
+	a particular way, but it can be useful for those interacting with the database if its structured in a way 
+	that like attributes are near eachother in the relation. For instance, Primary Keys should be at the
+	beginning of the relation since they are the identifying field for each record.
+
+2-1d) Can attributes have multiple values in a single n-tuple? Why or why not?
+	No, becuase this violates the principle behind the relational model. If that attribute is accessed, how
+	is the user accesing it to know which of its multiple values to access? Additionally, multiple values within
+	a tuple violates the concept of a tuple as well.
+
+3-1a) Compare and contrast the database and the software design processes. Are agile modeling practices applicable
+to database design as well?
+	Database design is much less likely to be an iteratory development approach since it is very difficult to
+	make changes to it after it has been implemented. Waterfall development may be better suited to database
+ 	development since it should be well thought out before its implemented.
+	Software development can be ongoing and change as the customer's needs change and programming languages 
+	(as opposed to database implementations) are easier to change once implemented and in use.
+
+3-1b)	Entities - A real world object or concept such as an employee or project that can be represented as with
+	Attributes - A property of interest that further describes an entity such as a name
+		Simple - Solid colored car
+		Multivalued - Multitone car
+		Composite - Street address which can be further subdivided
+		Derived - Age is derived from DOB
+	Relationship - The logical way that relations are connected to eachother. Cardinality describes how many
+		other tuples one can reference, and how many tuples can reference one single tuple.
+
+3-1c) Explain weak entities and identifying relationships.
+	A weak entity is one that cannot be identified by its attributes alone and must have a foreign key to 
+	identify it. It can be identified by a partial key- some combination of its attributes, assuming that no
+	other row in the relation has the potential to have the same partial key. The relationship to the other
+	entity that the weak entity identifies is called the Identifying relationship.
+
+4-1a)	1 - The semantics of the schema must be clear such that someone could look at it and dertermine what the 
+		database is used for, and how it is implemenmted
+	2 - Redundant information should be reduced such that the database isnt any larger than it needs to be
+	3 - NULL values should be used as little as possible so that each column in the database is as usefule
+		as possible
+	4 - Spurious tuples should be disallowed so that the tuples in a relation are as useful as possible. (
+		Spurious Tuples - when two tables are joined on attributes that are neither primary keys nor 
+		foreign keys)
+
+4-1b) Explain the terms functional dependency (for Monday, see Section 14.2) and multi-valued dependency by giving
+an example of each and showing how it satisfies the term’s formal definition.
+	Functional Dependecy - A constraint between two sets of attributes in a relation. An example of this would
+		be the VIN of a car constraining its engine-capacity. The opposite is not true since multiple cars
+		with different VINs may have the same engine-capactiy.
+	Multivalued Dependency - A full constraint between two sets of attributes in a table. An example is table
+		containing books, lecturers, and course names. If there exists a row with a unique course, lecturer
+		and book, each time a new book is added, a new row must be added for each lecturer and section. This
+		is redundant and violates 4NF.
+
+4-1c) Review the formal definitions of these terms: superkey; key (see Section 14.3.3).
+	Superkey - A combination of attributes in a relation that can be used to identify a row.
+	Candidate key - A superkey with the fewest possible attributes. Occasionally multiple candidate keys
+
+4-1d) Explain BCNF and 4NFby giving an example relation and proving whether its schema conforms (or fails to
+conform) to the definitions of each normal form.
+	BCNF Meets the following four criteria:
+		1 - Each attribute contains only one atomic element from its respective domain
+		2 - Every non-key attribute is functionally dependent on the Primary Key
+		3 - There are no transitive dependencies (A -> B, B -> C therefore A -> C)
+		4 - There cannot be dependency on something other than a whole candidate key
