@@ -1,0 +1,64 @@
+Read Sections 10.1, 10.4.1 & 26.1.1–2:
+
+Name the three basic approaches to database programming.
+
+	Embedded database commands in a general-purpose language
+	Using a library of database functions
+	Designing a brand new language
+
+Explain the concepts of:
+
+impedance mismatch
+
+	A databases data structures being incompatible with a programming languages structures
+
+stored procedures
+
+	Database definitions that enforce rules on what can be accessed and how
+
+triggers
+
+	A form of rule activated by updates to a table, resulting in performing an additional operation
+	
+	
+Compare and contrast:
+
+procedural vs non-procedural languages.
+
+	Non-Procedural languages contain the data that is to be operated on, but not the operations for that data.
+	Procedural languages rely on previous statements on control structures. (not available in SQL)
+
+client-side vs server-side database programming.
+
+	Embedded SQL statements in a program (can be precompiled) are defined as client-side database programming.
+	Server-side programming relies on API calls that the program makes, and the server queries the database
+	returns the data to the client.
+
+Explain why one would want to do server-side programming using PL/SQL.
+
+	Server-side programming prevents malfunctioning programs from potentially harming the database, and lets
+	a single server take care of managing the DB.
+
+For each of the following code segments, identify the type of the database object and explain what it does.
+
+CREATE PROCEDURE limited_count (limit IN integer) AS
+BEGIN
+  FOR i IN 1..limit LOOP
+      dbms_output.put_line(i);
+  END LOOP;
+END;
+
+ 
+
+BEGIN
+  dbms_output.put_line('Hello, PL/SQL!');
+END;
+ 
+
+CREATE TRIGGER log_trigger
+  BEFORE INSERT OR UPDATE OF lastName ON Person
+  FOR each row
+BEGIN
+  dbms_output.put_line('Hello, name change!');
+END;
+ 
