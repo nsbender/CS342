@@ -91,7 +91,13 @@
 	-- a. The query on which your view from exercise 1 is based - Write this query using both the
 	-- relational algebra and tuple relational calculus, with respect to the original HR relations.
 	
-	
+		-- π employee_id, first_name, last_name, email, hire_date,
+		--	department_name (Employees ∞ department_id = department_id Departments)
+		
+		-- {e.employee_id, e.first_name, e.last_name, e.email, d.hire_date | Employees(e) 
+		--	^ Departments(d) ^ e.department_id = d.department_id}
 	
 	-- b. The query from exercise 1.a - Write this query using (only) the relational calculus, with
 	-- respect to DeptView.
+	
+		-- {e.employee_id, e.first_name, e.last_name | deptView(e) ^ e.department_name = 'Executive'}
