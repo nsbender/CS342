@@ -1,3 +1,9 @@
+INSERT INTO ParentCompany VALUES (1,'Blue Ribbon Intermediate Holdings, LLC','United States');
+INSERT INTO ParentCompany VALUES (2,'Canal Street Brewing Co., L.L.C.','United States');
+INSERT INTO ParentCompany VALUES (3,'Carlsberg Group','Denmark');
+INSERT INTO ParentCompany VALUES (4,'Anheuser-Busch InBev','Belgium');
+INSERT INTO ParentCompany VALUES (5,'Molson Coors Brewing Company','United States');
+
 INSERT INTO Brewery VALUES (1,'New Belgium Brewing Company',1991,'United States','Fort Collins',NULL,'http://www.newbelgium.com/');
 INSERT INTO Brewery VALUES (2,'Bells Brewery Inc',1985,'United States','Kalamazoo',NULL,'https://www.bellsbeer.com/');
 INSERT INTO Brewery VALUES (3,'Pabst Brewing Co.',1844,'United States','Milwaukee',1,'http://pabstbrewingco.com/');
@@ -9,37 +15,31 @@ INSERT INTO Brewery VALUES (8,'New Glarus Brewing Company',1993,'United States',
 INSERT INTO Brewery VALUES (9,'Yazoo Brewing Company',2003,'United States','Nashville',NULL,'http://www.yazoobrew.com/');
 INSERT INTO Brewery VALUES (10,'Stella Artois',1926,'Belgium','Leuven',4,'http://stellaartois.com/');
 INSERT INTO Brewery VALUES (11,'Miller Brewing Company',1855,'United States','Milwaukee',5,'http://www.millercoors.com/');
-INSERT INTO Brewery VALUES (12,'Brouwerij \'t IJ',1985,'Netherlands','Amsterdam',NULL,'http://www.brouwerijhetij.nl/');
+INSERT INTO Brewery VALUES (12,'Brouwerij ''t IJ',1985,'Netherlands','Amsterdam',NULL,'http://www.brouwerijhetij.nl/');
 
-INSERT INTO ParentCompany VALUES (1,'Blue Ribbon Intermediate Holdings, LLC','United States');
-INSERT INTO ParentCompany VALUES (2,'Canal Street Brewing Co., L.L.C.','United States');
-INSERT INTO ParentCompany VALUES (3,'Carlsberg Group','Denmark');
-INSERT INTO ParentCompany VALUES (4,'Anheuser-Busch InBev','Belgium');
-INSERT INTO ParentCompany VALUES (5,'Molson Coors Brewing Company','United States');
-
-INSERT INTO Beer VALUES (1,'Fat Tire',1,'Amber Ale',22,TRUE,NULL,5.2);
-INSERT INTO Beer VALUES (2,'Hopslam',2,'Imperial IPA',70,TRUE,NULL,10.0);
-INSERT INTO Beer VALUES (3,'Oberon Ale',2,'Pale Wheat Ale',10,TRUE,NULL,5.8);
-INSERT INTO Beer VALUES (4,'Pabst Blue Ribbon',4,'Americal Lager',10,TRUE,NULL,4.6);
-INSERT INTO Beer VALUES (5,'Big Red Coq',6,'Red Ale',NULL,TRUE,NULL,6.25);
-INSERT INTO Beer VALUES (6,'Dirty Blonde',5,'Pale Wheat Ale',10,TRUE,NULL,4.5);
-INSERT INTO Beer VALUES (7,'Hop Perfect',9,'American IPA',91,TRUE,NULL,5.7);
-INSERT INTO Beer VALUES (8,'1664',7,'Euro Lager',NULL,TRUE,NULL,5.5);
-INSERT INTO Beer VALUES (9,'Wizard Burial Ground',6,'Belgian Quad',27,TRUE,NULL,10.4); -- Nate Bender's Favorite beer!
-INSERT INTO Beer VALUES (10,'Dirty Bastard',4,'Scottish Ale',50,TRUE,NULL,8.5);
-INSERT INTO Beer VALUES (11,'Hefeweizen',9,'Hefeweizen',18,TRUE,NULL,5.0);
-INSERT INTO Beer VALUES (12,'Miller Lite',11,'American Lager',10,TRUE,NULL,4.17);
+INSERT INTO Beer VALUES (1,'Fat Tire',1,'Amber Ale',22,'T',NULL,5.2);
+INSERT INTO Beer VALUES (2,'Hopslam',2,'Imperial IPA',70,'T',NULL,10.0);
+INSERT INTO Beer VALUES (3,'Oberon Ale',2,'Pale Wheat Ale',10,'T',NULL,5.8);
+INSERT INTO Beer VALUES (4,'Pabst Blue Ribbon',4,'Americal Lager',10,'T',NULL,4.6);
+INSERT INTO Beer VALUES (5,'Big Red Coq',6,'Red Ale',NULL,'T',NULL,6.25);
+INSERT INTO Beer VALUES (6,'Dirty Blonde',5,'Pale Wheat Ale',10,'T',NULL,4.5);
+INSERT INTO Beer VALUES (7,'Hop Perfect',9,'American IPA',91,'T',NULL,5.7);
+INSERT INTO Beer VALUES (8,'1664',7,'Euro Lager',NULL,'T',NULL,5.5);
+INSERT INTO Beer VALUES (9,'Wizard Burial Ground',6,'Belgian Quad',27,'T',NULL,10.4);
+INSERT INTO Beer VALUES (10,'Dirty Bastard',4,'Scottish Ale',50,'T',NULL,8.5);
+INSERT INTO Beer VALUES (11,'Hefeweizen',9,'Hefeweizen',18,'T',NULL,5.0);
+INSERT INTO Beer VALUES (12,'Miller Lite',11,'American Lager',10,'T',NULL,4.17);
 
 INSERT INTO Distributor VALUES (1,'Meijer','1540 28th St SE, Grand Rapids, MI 49508');
-INSERT INTO Distributor VALUES (2,'Martha\'s Vineyard','200 Union Ave NE, Grand Rapids, MI 49503');
-INSERT INTO Distributor VALUES (3,'D & W Fresh Market','Breton Village Shopping Center, 1814 Breton Rd SE, Grand Rapids, MI 49506');
-INSERT INTO Distributor VALUES (4,'Rishi\'s International Beverage','3839 28th St SE, Grand Rapids, MI 49512');
+INSERT INTO Distributor VALUES (2,'Martha''s Vineyard','200 Union Ave NE, Grand Rapids, MI 49503');
+INSERT INTO Distributor VALUES (3,'D and W Fresh Market','Breton Village Shopping Center, 1814 Breton Rd SE, Grand Rapids, MI 49506');
+INSERT INTO Distributor VALUES (4,'Rishi''s International Beverage','3839 28th St SE, Grand Rapids, MI 49512');
 INSERT INTO Distributor VALUES (5,'Meijer','1540 28th St SE, Grand Rapids, MI 49508');
-INSERT INTO Distributor VALUES (6,'B & B Liquor Store','2440 28th St SE, Grand Rapids, MI 49512');
+INSERT INTO Distributor VALUES (6,'B and B Liquor Store','2440 28th St SE, Grand Rapids, MI 49512');
 INSERT INTO Distributor VALUES (7,'Zellars Party Store','168 Basement Level,, Campau Ave NW, Grand Rapids, MI 49503');
 INSERT INTO Distributor VALUES (8,'Motor City Liquor','2313 Gratiot Ave, Detroit, MI 48207');
 INSERT INTO Distributor VALUES (9,'Wendell Smith Liquor Store','5300 Charlotte Ave, Nashville, TN 37209');
-INSERT INTO Distributor VALUES (10,'Gall & Gall Amsterdam','Nieuwezijds Voorburgwal 226 A, 1012 RR Amsterdam, Netherlands');
+INSERT INTO Distributor VALUES (10,'Gall and Gall Amsterdam','Nieuwezijds Voorburgwal 226 A, 1012 RR Amsterdam, Netherlands');
 INSERT INTO Distributor VALUES (11,'Bierlieb','Petersburger Str. 30, 10249 Berlin, Germany');
 INSERT INTO Distributor VALUES (12,'Beers Wines Spirits','426 St John St, Clerkenwell, London EC1V 4NJ, UK');
 
@@ -67,12 +67,12 @@ INSERT INTO Ingredient VALUES (5,'malt','Lager');
 INSERT INTO Ingredient VALUES (6,'malt','Wheat');
 INSERT INTO Ingredient VALUES (7,'malt','Rye');
 INSERT INTO Ingredient VALUES (8,'malt','Munich');
-INSERT INTO Ingredient VALUES (8,'additive','orange');
-INSERT INTO Ingredient VALUES (9,'additive','cardamom');
-INSERT INTO Ingredient VALUES (10,'additive','cinnamon');
-INSERT INTO Ingredient VALUES (11,'additive','coriander');
-INSERT INTO Ingredient VALUES (12,'additive','lemon');
-INSERT INTO Ingredient VALUES (13,'additive','rose');
+INSERT INTO Ingredient VALUES (9,'additive','orange');
+INSERT INTO Ingredient VALUES (10,'additive','cardamom');
+INSERT INTO Ingredient VALUES (11,'additive','cinnamon');
+INSERT INTO Ingredient VALUES (12,'additive','coriander');
+INSERT INTO Ingredient VALUES (13,'additive','lemon');
+INSERT INTO Ingredient VALUES (14,'additive','rose');
 
 INSERT INTO DistributorBeer VALUES (1,1,6,10.50);
 INSERT INTO DistributorBeer VALUES (1,2,6,17.00);

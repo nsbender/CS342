@@ -19,7 +19,7 @@ GRANT
 	TO beerdb;
 
 -- Connect to the user's account/schema.
-CONNECT beerdb/bjarne;
+CONNECT beerdb/beerdb;
 
 -- (Re)Create the database.
 DEFINE beerdb=D:cs342\project\databases\beerdb

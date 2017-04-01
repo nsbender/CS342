@@ -2,9 +2,9 @@
 DROP TABLE Beer;
 DROP TABLE Brewery;
 DROP TABLE Ingredient;
-DROP TABLE Brand;
 DROP TABLE Rating;
 DROP TABLE Distributor;
+DROP TABLE ParentCompany;
 
 DROP TABLE BeerIngredient;
 DROP TABLE DistributorBeer;

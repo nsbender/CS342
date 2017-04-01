@@ -1,28 +1,28 @@
-CREATE TABLE Beer(
+CREATE TABLE ParentCompany(
   id integer PRIMARY KEY,
   name varchar(64),
-  breweryId integer REFERENCES Brewery(id),
-  variety varchar(32),
-  ibu integer,
-  current boolean,
-  introduced date,
-  abv decimal(4,2)
+  country varchar(32)
 );
 
 CREATE TABLE Brewery(
   id integer PRIMARY KEY,
   name varchar(64),
-  yearFounded intege,
+  yearFounded integer,
   country varchar(32),
   city varchar(32),
   parentId integer REFERENCES ParentCompany(id),
   website varchar(128)
 );
 
-CREATE TABLE ParentCompany(
+CREATE TABLE Beer(
   id integer PRIMARY KEY,
   name varchar(64),
-  country varchar(32)
+  breweryId integer REFERENCES Brewery(id),
+  variety varchar(32),
+  ibu integer,
+  inProduction char,
+  introduced date,
+  abv decimal(4,2)
 );
 
 CREATE TABLE Distributor(
@@ -40,7 +40,7 @@ CREATE TABLE Ingredient(
 CREATE TABLE Rating(
   beerId integer REFERENCES Beer(id) ON DELETE CASCADE,
   score numeric, -- 0 to 100
-  type varchar(1), -- c for community scores, p for professional critic scores
+  ratingType varchar(1), -- c for community scores, p for professional critic scores
   source varchar(64)
 );
 
@@ -53,5 +53,5 @@ CREATE TABLE DistributorBeer(
 
 CREATE TABLE BeerIngredient(
   beerId integer REFERENCES Beer(id) ON DELETE CASCADE,
-  IngredientId integer REFERENCES Ingredient(id) ON DELETE CASCADE,
+  IngredientId integer REFERENCES Ingredient(id) ON DELETE CASCADE
 );
