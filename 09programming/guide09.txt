@@ -1,0 +1,50 @@
+1. Chapter 17
+
+a. B+ Trees — Focus on the Section 17.3 (skipping the material on algorithms).
+	i. Compare and contrast B-trees and B+-trees.
+	
+		A B+ tree has a root, nodes, and leaves, whereas a B+- only contains keys with no values
+
+	ii. Explain what it means for such a tree to be balanced.
+
+		A balanced tree is one that can be searched in log(n) time becuase all of its furthest brances
+		from the root is at an equal distance
+
+	iii. Compare and contrast tree and data pointers.
+
+		All of the nodes in a B-tree point to other nodes, whereas a data pointer, points to actual
+		pieces of data (values) that belong to a key.
+
+b. Explain the nature of multiple-attribute indexes (see the introduction to Section 17.4).
+
+	If an index has multiple attributes, then it will only be searchable by the one that the table
+	is sorted by; if you want to find another key that isnt the main one, you will need to look at 
+	every key.
+
+c. Explain the nature of hash and bitmap indexes (see Sections 17.5.1–2).
+	
+	Hash indexes optimize memory, and allows searching from a table based on an index rather than the raw
+	data. Bitmap indexes store data in an array based on the bits in the data, and act somewhere in between
+	a hash table and a tree. They are good for categorized data.
+
+d. Physical Database Design — Focus on the Section 17.7.
+	i. Explain the concept of physical database design (PDD).
+	
+		Translating the logical structure of a database into the actualy SQL queries that define it.
+
+	ii. Compare and contrast the uses for B-tree, hash and bitmap indexes in PDD.
+
+		B-tree:
+		hash:
+		bitmap:
+	
+	iii. Explain whether denormalization should be considered a form of PDD.
+	
+		Denormalization could be considered a form of PDD since it uses commands to design the database in 
+		such a way that it optimizes performance.
+		
+2. Chapter 18
+	a. Explain the concept of query optimization
+		
+		Determining the best way to run the given query. Less to do with writing the query and more to do 
+		with interpreting it. Not generally accessable by users or queries.
