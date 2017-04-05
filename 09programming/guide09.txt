@@ -44,7 +44,25 @@ d. Physical Database Design — Focus on the Section 17.7.
 		such a way that it optimizes performance.
 		
 2. Chapter 18
-	a. Explain the concept of query optimization
+a. Explain the concept of query optimization
 		
 		Determining the best way to run the given query. Less to do with writing the query and more to do 
 		with interpreting it. Not generally accessable by users or queries.
+		
+3. Oracle's EXPLAIN PLAN
+a. This outputs that it is executing in this order
+
+	0 - Analyze the select statement
+	1 - Access the table
+	2 - Nested Loops
+	3 - Index scanning
+	
+	and shows how quickly ineffiencies can add up
+	
+b. Explaing the following operations
+
+TABLE ACCESS FULL
+TABLE ACCESS BY INDEX
+NESTED LOOPS
+HASH JOIN
+INDEX UNIQUE SCAN
