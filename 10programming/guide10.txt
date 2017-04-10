@@ -1,0 +1,48 @@
+Sections 20.1-20.4.1 & 20.6 — Explain the following.
+interleaving vs. parallelism
+
+	Interleaved processes run on a single processor core, and 'take turns' running on the processor according
+	to a schedule. True parallelism runs processes on multiple processors simultaneously with synchronization.
+
+the lost update and dirty read problems
+
+	If two processes are accessing the same pice of data simultaneously with the intention of updating it,
+	the second process will overwrite the first's changes. Dirty read problems involve processes accessing data
+	that is currently being modified, but hasnt yet been updated causing the first process to operate on 'old'
+	data.
+
+transactions, including commits and rollbacks
+
+	Commits indicate that a change has been fully written and the data is ready
+	Rollbacks revert changes and leave an indicator that they have been reverted.
+	Transactions are a unit of work that are performed against a database and are performed in a logical order
+
+the ACID properties
+
+	Atomicity - Transactions must be completed as a single unit; all is complete or none is
+	Consistency - Databases must be in a consistent state after any transaction
+	Durability - All updates should be held if the system fails
+	Isolation - Transactions on parallel systems must be complete as if it is being done atomically
+
+schedule
+
+	Chronological execution sequence of a transaction.
+
+Chapter 21 introduction and Section 21.1 — Explain the following.
+
+lock
+
+	A check to prevent a piece of data from being operated on while another process is operating on it.
+
+two-phase locking
+
+	Expanding Phase - Locks are acquired and none are released
+	Shrinking Phase - Locks are released and none are acquired
+
+Review Oracle’s Overview of Transaction Processing in PL/SQL (only; you can skip the other sections on this page) — Compare and contrast the following.
+
+SAVEPOINT, COMMIT vs ROLLBACK [TO]
+
+	
+
+LOCK TABLE vs. FOR UPDATE
