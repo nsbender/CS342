@@ -1,0 +1,39 @@
+Consider the following parallel schedule. What do you expect will happen at each step? and 
+then run through the schedule to check your intuition.
+
+	The schedule does not behave as expected. The second session does not receive any of
+	the updates that were made in the first session since they are not being committed
+	automatically.
+
+Experiment a bit with some SQL*Plus sessions, making changes, exiting and restarting the 
+session and then answer the following questions.
+
+	a.Does Oracle handle the transaction life-cycle (see Figure 20.4) with respect to starting
+	and stopping SQL*Plus sessions?
+	
+		When I started a SQL*Plus session and created the tables and filled them with data,
+		I could query the data from the session in which I ran the creation commands; the
+		other session had no knowledge of the data being added until I closed the first
+		session. After this though, both sessions were able to query successfully.
+		
+		After deleting the the entry for Ocean's 11 in the Movie table from the first
+		session, the query in the first session would no longer return the movie. However,
+		the same query in the second session would still return the Movie.
+		
+		From this, I've concluded that Oracle only handles the transaction process when
+		sessions are closed, or changes are manually committed with COMMIT. ROLLBACKs
+		have no effect on the other session if run in the first.
+	
+	b. Can we implement any of the ACID properties using START-TRANSACTION/SAVEPOINT/
+	ROLLBACK/COMMIT?
+	
+		Atomicity can be implemented by ensuring that no other transactions are run until
+		COMMIT is run at the end. This doesn't prevent another session from having the lost
+		read problem all them, but it reduce it if two sessions are running simultaneously
+		for an extended period of time.
+		
+		Consistency already applies since no changes are being written until they are fullly
+		completed. A movie isn't in an invalid state at any point during the transaction.
+		
+		Isolation also already applies since changes aren't committed at any middle point
+		of the transaction, only at the end. Thus the effects are isolated until COMMIT.
