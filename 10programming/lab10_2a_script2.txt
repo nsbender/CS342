@@ -1,0 +1,9 @@
+Lab 10_2a_script2.txt, Nate Bender
+
+SELECT * FROM Movie WHERE id = 238071;
+UPDATE Movie SET rank = rank - .5 WHERE id = 238071;
+SELECT * FROM Movie WHERE id = 238071;
+
+Since this thread rasies Ocean's 11's score by .5 but the other one is updating the 'old' data, this data is
+overwritten in the Lost Update. It ends up getting a score of 9.0 rather than the 8.5 it should have gotten 
+after the first thread lowered it from 8.5 to 8.0.

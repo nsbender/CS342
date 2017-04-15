@@ -1,0 +1,26 @@
+-- Lab 10_3a_script1.txt, Nate Bender
+-- Database reset after lab10_2
+
+select * from Movie where id = 238071; -- First Select
+
+-- Returns a rank of 8.5
+
+select * from Movie where id = 238071; -- Second Select
+
+-- Waits for the first session's update to complete
+-- Returns a rank of 8.0
+
+update Movie set rank = rank - .5 where id = 238071;
+select * from Movie where id = 238071;
+commit;
+
+-- Returns a rank of 8.0
+
+select * from Movie where id = 238071;
+
+-- Returns a rank of 9.0
+
+This session expects the rank to end up at 8.0 (.5 lower than the original 8.5) but the other thread has
+just updated the same record to 9.0 by adding half a point. If the update did an absolute operation
+on the score (setting it to a number like 5.0) rather than setting it to a relative value (-.5 or +.5) this
+lost update may be more visible.
