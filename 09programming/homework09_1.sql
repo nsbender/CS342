@@ -1,41 +1,41 @@
--- Homework09.sql, Nate Bender
+-- Homework09_1.sql, Nate Bender
 
 SET autotrace off;
-SET serveroutput on;
-SET timing on;
+SET serveroutput ON;
+SET timing ON;
 
---- Baseline to get a timing for a join
+--- Baseline to get a timing for a JOIN
 
-select M.id, M.name, M.year, M.rank from Movie M
-join MovieDirector MD on M.id = MD.movieid
-join Director D on D.id = MD.directorid
-where D.firstname = 'Clint' and D.lastname = 'Eastwood';
--- Completed in .02 - .06 seconds
+SELECT M.id, M.name, M.year, M.rank FROM Movie M
+JOIN MovieDirector MD ON M.id = MD.movieid
+JOIN Director D ON D.id = MD.directorid
+WHERE D.firstname = 'Clint' AND D.lastname = 'Eastwood';
+-- Completed in .02 - .06 secONds
 
 
 --- Indexing the Director table
 
-create index DirectorNameIndex on Director(firstname, lastname);
+CREATE INDEX DirectorNameIndex ON Director(firstname, lastname);
 -- then
-select M.id, M.name, M.year, M.rank from Movie M
-join MovieDirector MD on M.id = MD.movieid
-join Director D on D.id = MD.directorid
-where D.firstname = 'Clint' and D.lastname = 'Eastwood';
--- Completed in .02 - .05 seconds, which seems negligible compared to the first query, but may be margainal
+SELECT M.id, M.name, M.year, M.rank FROM Movie M
+JOIN MovieDirector MD ON M.id = MD.movieid
+JOIN Director D ON D.id = MD.directorid
+WHERE D.firstname = 'Clint' AND D.lastname = 'Eastwood';
+-- Completed in .02 - .05 secONds, which seems negligible compared to the first query, but may be margainal
 
 
 --- Indexing the MovieDirector table
 
-create index MovieDirectorDirectorIndex on MovieDirector(directorid);
+CREATE INDEX MovieDirectorDirectorIndex ON MovieDirector(directorid);
 -- then
-select M.id, M.name, M.year, M.rank from Movie M
-join MovieDirector MD on M.id = MD.movieid
-join Director D on D.id = MD.directorid
-where D.firstname = 'Clint' and D.lastname = 'Eastwood';
--- Completed in .03 - .08 seconds. This is noticeably slower, but I am unsure why. I'd like to keep expirimenting
--- with joined indexes like this one to see why this is happening...
+SELECT M.id, M.name, M.year, M.rank FROM Movie M
+JOIN MovieDirector MD ON M.id = MD.movieid
+JOIN Director D ON D.id = MD.directorid
+WHERE D.firstname = 'Clint' AND D.lastname = 'Eastwood';
+-- Completed in .03 - .08 secONds. This is noticeably slower, but I am unsure why. I'd like to keep expirimenting
+-- with JOINed indexes like this ONe to see why this is happening...
 
 
 -- Between the two of these queries, the first Index seems to have been more effective (even if its timing
--- was negligible). This may because its not considering the full range of directors, but rather only the 
--- ones that match a range. Still may not be fully optimized but conceptually, it seems to be an improvement
+-- was negligible). This may because its not cONsidering the full range of directors, but rather ONly the 
+-- ONes that match a range. Still may not be fully optimized but cONceptually, it seems to be an improvement
