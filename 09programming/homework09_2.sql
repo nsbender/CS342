@@ -1,5 +1,5 @@
--- Homework09_2.sql, Nate Bender
-
+-- Homework09_2.sql, Nate Bender (imdb large)
+ 
 SET autotrace off;
 SET serveroutput on;
 SET timing on;

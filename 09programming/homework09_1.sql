@@ -4,6 +4,7 @@ SET autotrace off;
 SET serveroutput ON;
 SET timing ON;
 
+
 --- Baseline to get a timing for a JOIN
 
 SELECT M.id, M.name, M.year, M.rank FROM Movie M
