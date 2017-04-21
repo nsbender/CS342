@@ -1,0 +1,28 @@
+c. Exploring the project structure — How do the external libraries (in the project pane)
+relate to J2SE and J2EE?
+
+	Each of the files in the JDK (the .jar libraries) are the actual implementation of
+	J2SE and J2EE.
+	
+d. Developing source code — Set the HTML title and body content to whatever you’d like.
+At what tier does this application run?
+
+	This application is the web tier. This will be the applicastion that the user is 
+	interacting with.
+	
+e. Running the application & Modifying the code and observing the changes — What server does
+this step use to serve up your application? For a hint, look at what’s served up at the
+URL: /. How does it compare with a typical web server?
+
+	This page is being served locally from glassfish as opposed to a true, dedicated web
+	server.
+	
+f. Exploring an artifact configuration — Skim through these sections, making sure that
+you can find the application features they discuss. What is a WAR file?
+
+	A WAR file is the whole web application in an archive format which is ready for 
+	deployment on a server.
+	
+g. Deploying an artifact onto a running server — Here, we run the app on a GlassFish server
+running on the local machine, called a “remote” server because it’s running outside of
+Intellij IDEA. What’s the difference between “exploded” and non-exploded WAR files?
