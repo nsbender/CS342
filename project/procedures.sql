@@ -1,0 +1,13 @@
+CREATE OR REPALCE PROCEDURE DeleteBeer (beerId in integer) AS
+BEGIN
+	LOCK TABLE Beer IN SHARE MODE;
+	LOCK TABLE DistributorBeer IN SHARE MODE;
+	
+	SAVEPOINT;
+	DELETE FROM Beer WHERE id = beerId;
+	
+	SAVEPOINT;
+	DELETE FROM DistributoBeer WHERE beerId = beerId;
+	
+	COMMIT;
+END;

@@ -25,7 +25,7 @@ SELECT DISTINCT b.city, (
 FROM Brewery b;
 
 
--- The following Query returns a listing of every brewery in the database and the average core
+-- The following Query returns a listing of every brewery in the database and the average score
 -- of all of its beers. This is a useful query for customers deciding what brewery is most worth
 -- trying a beer from, as well as for Distributors deciding what to stock based on popularity.
 SELECT DISTINCT br.name, (SELECT AVG(score)

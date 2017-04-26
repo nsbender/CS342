@@ -1,0 +1,36 @@
+In the query where a view is created to give a summary of each beer there is a 
+complex query to get information from the Rating, Beer, and Brewery tables. The query
+and it's Execution Plan is as follows. 
+
+CREATE OR REPLACE VIEW Beer_Basics AS
+SELECT DISTINCT b.name, br.name AS BreweryName, b.ibu,(
+	SELECT AVG(score)
+	FROM Rating r
+	WHERE r.beerId = b.id
+)
+AS AverageRating
+FROM Beer b, Rating r, Brewery br
+WHERE b.breweryId = br.id;
+
+---------------------------------------------------------------------------------
+| Id  | Operation             | Name    | Rows  | Bytes | Cost (%CPU)| Time     |
+---------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT      |         |   180 | 21600 |    11  (19)| 00:00:01 |
+|   1 |  SORT AGGREGATE       |         |     1 |    26 |            |          |
+|*  2 |   TABLE ACCESS FULL   | RATING  |     1 |    26 |     2   (0)| 00:00:01 |
+|   3 |  HASH UNIQUE          |         |   180 | 21600 |    11  (19)| 00:00:01 |
+|   4 |   MERGE JOIN CARTESIAN|         |   180 | 21600 |    10  (10)| 00:00:01 |
+|*  5 |    HASH JOIN          |         |    12 |  1440 |     5  (20)| 00:00:01 |
+|   6 |     TABLE ACCESS FULL | BEER    |    12 |   876 |     2   (0)| 00:00:01 |
+|   7 |     TABLE ACCESS FULL | BREWERY |    12 |   564 |     2   (0)| 00:00:01 |
+|   8 |    BUFFER SORT        |         |    15 |       |     8  (13)| 00:00:01 |
+|   9 |     TABLE ACCESS FULL | RATING  |    15 |       |     0   (0)| 00:00:01 |
+---------------------------------------------------------------------------------
+
+I attempted to optimize it by indexing the each of the tables used in some way or
+another (e.g. indexing Beer by breweryId), but none of the indexes really had any
+significant effect since this query is really just a complex join.
+
+I could reduce the complexity of this query, but I believe any less information would
+fail to be useful. Another way to reduce the complexity may be to not perform that
+as a subquery but as a normal join.
