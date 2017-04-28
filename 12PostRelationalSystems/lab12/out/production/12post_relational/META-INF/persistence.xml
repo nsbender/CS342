@@ -7,7 +7,7 @@
         <class>models.Personteam</class>
         <class>models.Team</class>
         <properties>
-            <property name="eclipselink.jdbc.url" value="jdbc:oracle:thin:@//localhost:1521/XE"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:oracle:thin:@//localhost:1521/xe"/>
             <property name="eclipselink.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
             <property name="eclipselink.jdbc.user" value="cpdb"/>
             <property name="eclipselink.jdbc.password" value="bjarne"/>

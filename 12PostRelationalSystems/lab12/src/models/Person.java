@@ -1,10 +1,8 @@
 package models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Time;
+import java.util.List;
 
 /**
  * Created by nsb2 on 4/28/2017.
@@ -20,6 +18,23 @@ public class Person {
     private Time birthdate;
     private String householdrole;
     private String homegrouprole;
+
+    @ManyToOne
+    @JoinColumn(name = "HOUSEHOLDID", referencedColumnName = "ID")
+    private Household household;
+    @ManyToMany
+    @JoinTable(name = "PERSONTEAM", schema = "CPDB",
+            joinColumns = @JoinColumn(name = "PERSONID", referencedColumnName = "ID", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "TEAMNAME", referencedColumnName = "NAME", nullable = false))
+    private List<Team> teams;
+
+    public Household getHousehold() { return household; }
+
+    public void setHousehold( Household h) { this.household = h; }
+
+    public List<Team> getTeams() { return teams; }
+
+    public void setTeams( List<Team> t ) { this.teams = t; }
 
     @Id
     @Column(name = "ID")

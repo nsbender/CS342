@@ -7,10 +7,10 @@
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
-      <secret-storage>memory</secret-storage>
       <user-name>cpdb</user-name>
-      <introspection-scope>*:CPDB,PUBLIC,SYS,SYSTEM</introspection-scope>
+      <introspection-schemas>*:CPDB,PUBLIC,SYS,SYSTEM</introspection-schemas>
       <resolve-scope>*:CPDB,PUBLIC</resolve-scope>
+      <unqualified-resolve-schemas>*:CPDB,PUBLIC</unqualified-resolve-schemas>
     </data-source>
   </component>
 </project>
