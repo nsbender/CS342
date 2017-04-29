@@ -1,0 +1,48 @@
+12.1
+1. Compare and contrast the database connection you built in Guide 12 
+(in Intellij IDEA) and this database connection (in GlassFish). Do we need 
+both? If so, explain why; if not, explain why not.
+
+	Instead of a new connection being created each time there is a request,
+	connections are reused in a pool. This benefits performance when there
+	are many concurrent users and allows for scalability.
+
+12.2
+1. How does Intellij map the database tables into Java entity classes?
+
+	It creates a new Java object for each of the tables (their schemas
+	anyway...)
+
+2. What is the PK class do?
+
+	The PK class maps an object to another using the primary keys of both.
+
+3. Does Intellij default to field or property annotations?
+
+	IntelliJ defaultes to Property Annotations. It created basic
+	ecapsulation methods (getters & setters).
+
+12.3
+1. Does this application perform marshalling? If so, explain what the 
+marshalling does; if not, explain why it’s not needed.
+
+	Yes it does. As long as the program receiving the JSONified objects
+	can parse it, it is universally understood.
+
+2. Does this code perform any injection?
+
+	Yes it does. Since EntityManager is a part of the CPDBResource code, it
+	is able to access the entitities.
+
+3. What does the entity manager do in this code, if anything?
+
+	Accessing the 'Java' Objects in the databse. It gives us a method to
+	get a Person by their id.
+
+12.4
+1. How does JPA return the household and team entities related to a given 
+person?
+
+	JPS returns the household and team entities as JSON objects. The Household
+	object it directly inside the Person object. Teams are stored as a JSON
+	array. These are stored in the teams attribute in the Person JSON object
