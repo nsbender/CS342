@@ -1,0 +1,41 @@
+1. Read Pramod Sadalage’s NoSQL Databases: An Overview (circa 2012) and explain:
+
+	a. the key motivations for considering non-relational database systems.
+	
+		Better clustering, open sourcing, schema-less
+
+	b. aggregate data models.
+	
+		A collection of data that is interacted with as a unit, much like OO programming. Forms the basis
+		for the ACID properties.
+
+	c. polyglot persistence.
+	
+		Not relational, clustering and built to run on many systems
+
+	d. the relevance of the CAP theorem.
+	
+		Allows DB admins to tune their databases to run well on their systems regardless of their hardware. 
+		Allows for different numbers of nodes, write requests, and replication
+
+	e. the types of NoSQL databases.
+	
+		Key-Value Stores, Document Based, Column Based, Graph Based
+
+	f. when (and when not) to use NoSQL database systems.
+	
+		NoSQL solutions are best when THE 'schema' may need to be refactored down the road. NoSQL DBs can be
+		modified without downtime. Additionally, they can often have better throughput since the storage and
+		business logic are often more separated.
+		
+2. Use “Getting Started with the Key/Value API”, Chapters 3–5, from the Oracle NoSQL Database documentation
+as a reference. Be sure to know how to:
+
+	a. Compare and contrast Major and minor key components.
+
+		Records are stored based on the hash of the Major key, so KV pairs need at least one major. Minor 
+		Components store additional data attached to the record that have no effect on how the pair is
+		stored
+
+	
+		
