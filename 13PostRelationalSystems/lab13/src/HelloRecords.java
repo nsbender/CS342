@@ -1,10 +1,7 @@
 import java.util.Arrays;
+import java.util.Map;
 
-import oracle.kv.KVStore;
-import oracle.kv.KVStoreConfig;
-import oracle.kv.KVStoreFactory;
-import oracle.kv.Key;
-import oracle.kv.Value;
+import oracle.kv.*;
 
 /**
  * Created by nsb2 on 5/5/2017.
@@ -36,18 +33,28 @@ public class HelloRecords {
         movieStore.put(yearKey, yearValue);
 
 
-        // R(ead)
-        // This queries KVLite using the same keys.
-        // The result, a byte array, is converted into a string.
-        System.out.println("New movie record:");
-        String nameResult = new String(movieStore.get(nameKey).getValue().getValue());
-        String yearResult = new String(movieStore.get(yearKey).getValue().getValue());
-        String ratingResult = new String(movieStore.get(ratingKey).getValue().getValue());
+//        // R(ead)
+//        // This queries KVLite using the same keys.
+//        // The result, a byte array, is converted into a string.
+//        System.out.println("New movie record:");
+//        String nameResult = new String(movieStore.get(nameKey).getValue().getValue());
+//        String yearResult = new String(movieStore.get(yearKey).getValue().getValue());
+//        String ratingResult = new String(movieStore.get(ratingKey).getValue().getValue());
+//
+//        // Print the formatted results from the query
+//        System.out.println("\t" + nameKey.toString() + " : " + nameResult);
+//        System.out.println("\t" + yearKey.toString() + " : " + yearResult);
+//        System.out.println("\t" + ratingKey.toString() + " : " + ratingResult);
 
-        // Print the formatted results from the query
-        System.out.println("\t" + nameKey.toString() + " : " + nameResult);
-        System.out.println("\t" + yearKey.toString() + " : " + yearResult);
-        System.out.println("\t" + ratingKey.toString() + " : " + ratingResult);
+        String movieIdString = "92616";
+
+        Key majorKeyPathOnly = Key.createKey(Arrays.asList("movie", movieIdString));
+        Map<Key, ValueVersion> fields = movieStore.multiGet(majorKeyPathOnly, null, null);
+        for (Map.Entry<Key, ValueVersion> field : fields.entrySet()) {
+            String fieldName = field.getKey().getMinorPath().get(0);
+            String fieldValue = new String(field.getValue().getValue().getValue());
+            System.out.println("\t" + fieldName + "\t: " + fieldValue);
+        }
 
         movieStore.close();
     }
