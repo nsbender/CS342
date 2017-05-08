@@ -1,0 +1,36 @@
+13.1
+	a.  Compare and contrast the store.put() command used here for KVLite and the 
+	em.persist() command you used for the GlassFish entity manager in the previous lab.
+	
+		The functionality of these two methods is essentially equivatlent with the exception that store.put()
+		is for a non-relational database and em.persist() is for a glassfish entity manager.
+		
+	b. Compare and contrast the store.put() command with the standard Java hashtable’s
+	myHashTable.put() command.
+	
+		Instead of accessing a local data structure like hashtable.put(), store.put is accessing a remote
+		program that persists after the accessing program has terminated.
+	
+13.2
+	a. Compare and contrast KVLite keys with relational database keys.
+	
+		KVLite keys are all stored as strings that point to a particular piece of data (a record). They follow
+		a hierarchy and can have major and minor keys. Relational databases use a unique key and no hierarchy.
+		Additionally, relational databases data often has types.
+		
+13.3
+	a. So far, the implementation has only dealt with records in one relational table, 
+	Movie. Explain how a key-value database might implement the one-to-many join 
+	relationships commonly implemented in relational databases using foreign keys.
+	
+		In order to imoplement multiplicity, multivalued keys would need to be used, such as a JSON array
+		stored as a string. For example, the key pointing to the actors in a particular movie may be
+		formatted as "{"actorList":"[actor1, actor2]"}"
+	
+	b. KVLite requires that there be a key, but it is possible to have an “empty” value. 
+	Such a value can be created using Value.createValue(new byte[0]). Where might one need
+	such a construct?
+	
+		Implementing a 0 byte value would essentially be equivatlent to a null field in a relational record.
+		For example, if a movie had just been release and didnt have a rating yet, but would in the future,
+		a o byte value could be added just so that the move still had a rating key.
