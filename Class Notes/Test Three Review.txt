@@ -1,0 +1,386 @@
+1. Sections 10.1, 10.4.1 & 26.1.1–2
+
+	a. Name the three basic approaches to database programming.
+
+		Embedded SQL approach - SQL queries are a part of the program
+		and are validated at compile time.
+		
+		Library Of Function Calls Approach - queries generated at runtime.
+		
+		Database Programming Language Approach - Does not suffer from 
+		impedance mismatch problem
+	
+	b. Explain the concepts of:
+
+		i. impedance mismatch
+		
+			Database structures being incompatible with prgramming language
+			structures.
+
+		ii. stored procedures
+		
+			More complicated procedures that become a part of the database
+			definition and are invoked appropriately when certain
+			conditions are met.
+
+		iii. triggers
+		
+			A rule activated by updates to a table which results in
+			performing some additional operations on other tables or sending
+			messages.
+
+2. Server-Side Programming: PL/SQL and Java. — Focus on server-side programming,
+PL/SQL and triggers; skip the section on “Overview of Java in Oracle
+Database”.
+
+	a. Compare and contrast:
+
+		i. procedural vs non-procedural languages.
+		
+			A non-procedural (declaritive) language like SQL is a single 'line' that outputs a
+			data set at the end of its execution and the prorgrammer has no access to the
+			data before it has completed. A procedural language executes multiple statements
+			and the data is manipulated before the end result. It often requires input as well.
+
+		ii. client-side vs server-side database programming.
+		
+			Client-side applications can make calls to a DBMS API as long as both have the 
+			necessary software installed. 
+
+	b. Explain why one would want to do server-side programming using PL/SQL.
+
+	c. For each of the following code segments, identify the type of the database object and 
+	explain what it does.
+
+	CREATE PROCEDURE limited_count (limit IN integer) AS
+	BEGIN
+	  FOR i IN 1..limit LOOP
+		  dbms_output.put_line(i);
+	  END LOOP;
+	END;
+	 
+
+	BEGIN
+	  dbms_output.put_line('Hello, PL/SQL!');
+	END;
+	 
+
+	CREATE TRIGGER log_trigger
+	  BEFORE INSERT OR UPDATE OF lastName ON Person
+	  FOR each row
+	BEGIN
+	  dbms_output.put_line('Hello, name change!');
+	END;
+	
+--- 09 ---
+
+1. Chapter 17
+
+	a. B+ Trees — Focus on the Section 17.3 (skipping the material on algorithms).
+		i. Compare and contrast B-trees and B+-trees.
+
+			B-trees - Data on inner nodes; nodes accessed more frequently can be put closer to 
+			the root for faster access.
+			
+			B+-trees - Data only on outer nodes. More nodes can be put in memory and outer nodes
+			are linked, meaning a full scan is only O(1)
+		
+		ii. Explain what it means for such a tree to be balanced.
+		
+			The difference in depth between any two subtrees is at most 1, allowing for similar
+			search times
+
+		iii. Compare and contrast tree and data pointers.
+		
+			Data pointers give the location of a piece of data, whereas tree pointer give the
+			location of another node as well as a piece of data.
+
+	b. Explain the nature of multiple-attribute indexes (see the introduction to Section 17.4).
+
+		Order of attributes in the composite key is important. A single attribute index splits
+		the data into blocks linearly, but the composite keys are like a graph with multiple
+		axis.
+	
+	c. Explain the nature of hash and bitmap indexes (see Sections 17.5.1–2).
+	
+		bitmap indexes user bitwise operations for very fast searches. Mostly used in read-only
+		data. Most useful with low-cardinality columns (boolean data )
+		
+		Hash indexes - Longer strings of data converted to shorter strings and used for quick
+		storage and lookup. Faster than searching using the original value.
+
+	d.Physical Database Design — Focus on the Section 17.7.
+		i. Explain the concept of physical database design (PDD).
+		
+			A database's physical design cannot often be decided until the database designer knows
+			the queries, transactions and applications that are expeced to run. (Called the job mix).
+			Factors include attribues, tables, types of comparisons done in queries, expected 
+			frequency of transactions, time constraints, frequency of updates, uniqueness of
+			attributes.
+
+		ii. Compare and contrast the uses for B-tree, hash and bitmap indexes in PDD.
+		
+			B+ trees support both equality and range queries on search attributes, and hash
+			indexes work well with equality conditions in joins but not range comparisons
+
+		iii. Explain whether denormalization should be considered a form of PDD.
+		
+			Denormalizations is a form of PDD becuase it considers the balance between storage
+			redundancy and performance. Is duplicate storage better than expensive joins?
+
+2. Chapter 18
+
+	a. Explain the concept of query optimization (see the introduction to the chapter).\
+	
+		After the scanners and parsers have examined the query, a query tree/graph is created
+		and there are often multiple possible plans. Choosing the a suitable one is not always
+		the most effective (optimization is a misnomer)
+
+3. Oracle’s EXPLAIN PLAN
+
+	a. Load the small version of the Internet Movie DB defined in the repo (cs342/databases/imdb),
+	configure the auto-trace facility in SQL*Plus (SET SERVEROUTPUT ON; & SET AUTOTRACE ON;) 
+	and generate an execuation plan for some simple query. What is the execution plan operation 
+	used and what does that operation do?
+	
+		The operation shows execution plan that resulted from the full query tree for the query.
+		It displays the tables in the order they are accessed, when they are joined, and what type
+		of access has been performed on each.
+
+	b. Explain at least the following operations (see Oracle Execution Plan Operations).
+
+		TABLE ACCESS FULL - A full scan of the table in question; passes the result rows to the
+			next level opertaion
+		TABLE ACCESS BY INDEX - Scans the table according to the index in question
+		NESTED LOOPS - Return all rows from source table one, then scan table two for each row 
+			returned by table one.
+		HASH JOIN - smaller of two tables is hashed on the join key into memory. Much quicker than
+			a nested loop
+		INDEX UNIQUE SCAN - reads either 0 or 1 row from the index. Only scans until it finds the
+			first matching row. (usually a primary key)
+			
+--- 10 ---
+
+1. Sections 20.1-20.4.1 & 20.6 — Explain the following.
+	a. interleaving vs. parallelism
+	
+		Interleaving - running 2 or more processes on the same processor. One will go into a 
+		waiting state while waiting for I/O and another will take its place and run. Keeps the CPU
+		busy. 
+		True Parallelism - Running multiple processes simultaneously on two distinct processors
+
+	b. the lost update, dirty read and incorrect summary problems
+	
+		The Lost Update - 
+			1(read), 1(math), 2(read), 2(different math), 1(write), 2 (overwrite)
+		Dirty Read -
+			A write fails and before it can be rolled back, another process reads the data
+		Incorrect Summary - When processes are updating rows that an aggregate function is
+			operating on.
+
+	c. transactions, including commits and rollbacks
+	
+		A transaction is an atomic unit of work that is either completed entirely or not at all.
+		A system needs to keep track of when a transaction starts in case of failure, in which
+		case it will roll back the data to its values that it had before the transaction started.
+		If it succeeds, the data will be committed and written to disk and the transaction will
+		release its hold on the data.
+
+	d. the ACID properties
+	
+		Atomicity - A transaction is a single unit that is either completed or not
+		Consistency - If a transaction is completed without interruption, it should leave the
+			database in a consistent state
+		Isolation - No transactions should interfere with eachother, even if they are executing
+			concurrently
+		Durability - The data committed after a transaction must persist in the event of a 
+		failure
+
+	e. schedule
+
+		The way that processes are interleaved such that transactions are grouped in a way that
+		gets the intended result
+		
+2. Chapter 21 introduction and Section 21.1 — Explain the following.
+
+	a. lock
+	
+		Signals other transaction to stop accessing data that is already being used during the
+		lifetime of another transaction
+
+	b. two-phase locking
+	
+		Uses shared and exclusive locks - sharing access to object x if all processes are using it
+			only for reading. Exclusive locks are for writing; only one process can write at a time.
+		Expanding Phase - Locks are acquired and no locks are released
+		Shrinking Phase - Locks are released and no locks are acquired
+		
+
+3. Review Oracle’s Overview of Transaction Processing in PL/SQL (only; you can skip the other
+ sections on this page) — Compare and contrast the following.
+
+	a. SAVEPOINT, COMMIT vs ROLLBACK [TO]
+	
+		Savepoints allow rolling back of part of a transaction as opposed to the whole thing.
+		A commit ends the current transaction and makes the changes permanent.
+		A rollback ends the transaction and undoes any changes made during it. 
+
+	b. LOCK TABLE vs. FOR UPDATE
+	
+		Lock tables locks and entire table in a specified more (row share or exclusive)
+		For update - locks entire rows exclusively for updating multiple rows.
+		
+--- 11 ---
+
+1. Read Your First Cup: An Introduction to the Java EE Platform — Focus on Chapter 2, “Understanding Java Platform, Enterprise Edition”
+
+	a. Explain the tiers discussed in the article. On which does J2EE focus? On which to the Oracle
+	database focus?
+	
+		Client Tier - Application clients that exist on a separate machine from the JavaEE server
+			and make requests to the server. The server processes requests and sends back a 
+			response to the client. Not necessarily even a Java application.
+		Web Tier - Components that handle the interaction between the client and business tier.
+			Generates formatted content for the client, collects input and returns results,
+			controls the flow of pages to the client, maintains user session state, and performs
+			basic logic and holds temporary data in 'managed beans'.
+		Business Tier - Provides business logic code: core functionality. JAX-RS RESTful service.
+			(like the applications we wrote for lab)
+		Enterprise Information Systems Tier - Database servers and 'backend'. JDBC, Persistence API
+			EE Conector and JTA for transactions.
+
+	b. Explain the nature of a J2EE container. What sort of containers are there?
+	
+		A J2EE container is an execution environment for applications that contains APIs for
+		applications. Web containers host web applications and extends a web server by running
+		servlets and JavaServer Pages (JSP files are HTML files that use servlets [java programs
+		that extend server functionality])
+
+2. Read The Java EE Tutorial — This tutorial provides extensive material on J2EE; focus on the
+ sections listed here.
+
+	a. Sections 1.7–1.8, “Java EE 7 APIs” — Explain the purpose of these technologies (only):
+	JPA - specification for accessing data between java objects and relational database tables.
+		mitigates the issue of impedance mismatch between Java and Relational databases
+	JTA - specifies standard Java interfaces between a transaction manager and the parties
+		involved in a distributed transaction system: the resource manager, the application
+		server, and the transactional applications. 
+	JAX-RS* - Creates a RESTful interface for Java web applications and endpoints
+	JDBC - defines how a client may access a database. Provides methods to query and update
+	JAXB - Allows Java to map classes to XML representations
+
+		
+	
+	b. Section 5, “Packaging Applications” — Compare and contrast JARs, WARs & EARs.
+	
+		A Java EE aplication is delivered in a Java Archive JAR, a Web Archive WAR, or an
+		Enterprise Archive EAR. Allows for packaging of multiple applications such that they
+		share components. An EAR contains deployment descriptors, or XML documents that
+		describe the deployment settings of the application, module or component (META-INF).
+		
+3. Review these tutorials, on which the lab is based: Developing a Java EE Application & Creating and Running Your First RESTful Web Service.
+
+	a. Identify the IDE we’ll use for J2EE development.
+	
+		IntelliJ Idea
+
+	b. Identify the roles of the following technologies in the J2EE application: J2SE’s JDK; GlassFish.
+	
+		J2SE - Platform for deploying portable apoplications on servers
+		Glassfish - Open source application server for Java EE. Scalable and Legacy applications
+
+	c. Explain the nature of a RESTful webservice.*
+	
+		Resource identification through URIs
+		Uniform interfaces - four CRUD operations: GET PUT POST DELETE
+		Self descriptive messages - 
+		Stateful interactions - Request messages are self contained, etc
+		
+--- 12 --- 
+
+1. Read specified sections of Java Persistence and explain the given concepts.
+
+	a. Chapter 3, “What is Java persistence?”
+
+		i. Persistence in Java and how it relates to the impedance mismatch discussed in unit 8
+		
+			Persistence describes data that outlives the process that created it. Java persistence
+			is storing anything to any level of persistence using Java... JDBC, Serialization,
+			file IO, JCA, object databases and XML databases.
+			
+			Java persistence is an attempt to overcome impedance mismatch between relational 
+			databases and Java objects.
+
+		ii. POJOs
+		
+			Plain Old Java Objects are java objects that are not bound by any special restriction
+			and do not require a classpath
+
+	b. Chapter 4, “Persistence Products, Which to Use?” — Name 2–3 of the major JPA
+	implementations and indicate which one we are using in this class.
+	
+		EclipseLink, OpenJPA, DataNucleus, Toplink
+
+	c. Chapter 5, “Mapping, Round Pegs into Square Holes” — Annotate this Java class for object-relational mapping using Java Annotations with the property access type.
+
+		@Entity
+		@Access(AccessType.FIELD)
+		public class Solder {
+			@ID
+			private String name;
+			@ManyToOne(fetch=FetchType.LAZY)
+			private String rank;
+			private long serialNumber;
+			
+			@ManyToMany
+			@JoinTable(
+				name="SolderBattle",
+				joinColumns=@JoinColumn(name="Solder_ID", referencedColumnName="ID"),
+				inverseJoinColumns=@JoinColumn(name="Battle_ID", referencedColumnName="ID"))
+			private List<Battle> battles;
+
+			public String getName() { return name; }
+			public void setName(String name) { this.name = name; }
+
+			public String getRank() { return rank; }
+			public void setRank(String rank) { this.rank = rank; }
+
+			@Access(AccessType.PROPERTY)
+			public String getSerialNumber() { return serialNumber; }
+			public void setSerialNumber(String serialNumber) { this.serialNumber = serialNumber; }
+			
+			public String getCommander() { return commander.getName(); }
+			public void setCommander(Commander c) { this.commander = c; }
+
+			public String getBattles() { return battles; }
+			public void addBattle(Battle b) { this.battles.append(b); }
+		}
+		
+		In particular, add annotations for the following.
+
+		Persistence Entity — Annotate the class as a persistence entity (Chapter 5 overview).
+		OID — Annotate the object ID (Section 5.2).
+		Basic fields — Annotate the non-ID fields (Section 5.6).
+		Relationships — Add new fields/accessors/annotations that exemplify the following JPA relationships (Section 5.7 overview & Sections 5.7.2–5.7.4).
+		A many-to-one relationship to a commander — The commander is another Solder object.
+		A many-to-many relationship to a Battle class — You don’t need to add the Battle class.
+		You don’t need to run this code, but be familiar with the concepts and the annotations that implement them.
+
+	d. Chapter 6, “Runtime, Doing the Hokey Pokey (EntityManager)”
+
+		i. Entity Manager (Chapter 6 overview)
+		
+			Provides the API for creating queries, accessing transactions, and finding, persisting
+			merging and deleting objects.
+
+		ii. Injection — We’ll use J2EE dependency injection to access to a container-managed
+		EntityManager (Chapter 6 overview).
+		
+			
+
+		iii. Persistence operations — Name the four basic persistence operations (Section 6.2).
+		
+			Persist - Insert
+			Merge - Update
+			Remove - Delete
+			Find - Select
