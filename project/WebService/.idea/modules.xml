@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/12post_relational.iml" filepath="$PROJECT_DIR$/12post_relational.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JAXRS/JAXRS.iml" filepath="$PROJECT_DIR$/JAXRS/JAXRS.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="beerdb&amp;localhost" uuid="b5dfb215-6cf2-48f9-809e-834993b03c9c">
+      <database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0">
+        <extra-name-characters>$#</extra-name-characters>
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <user-name>beerdb</user-name>
+      <introspection-schemas>*:CPDB,PUBLIC,SYS,SYSTEM</introspection-schemas>
+      <resolve-scope>*:CPDB,PUBLIC</resolve-scope>
+      <unqualified-resolve-schemas>*:CPDB,PUBLIC</unqualified-resolve-schemas>
+    </data-source>
+  </component>
+</project>

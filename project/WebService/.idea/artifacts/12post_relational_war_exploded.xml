@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="12post_relational:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/12post_relational_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="12post_relational" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="JPA 2.0-2.0" />
+          <element id="library" level="project" name="javax.ws.rs:javax.ws.rs-api:2.0" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="12post_relational/web/Web" />
+    </root>
+  </artifact>
+</component>
