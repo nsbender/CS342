@@ -12,16 +12,17 @@ public class LoadDB {
 
     public static void main(String[] args) throws SQLException {
 
+        KVStore kvstore = KVStoreFactory.getStore(new KVStoreConfig("kvstore", "localhost:5000"));
+        loadDB(kvstore);
+        kvstore.close();
+    }
+
+    public static void loadDB(KVStore kvstore) throws SQLException{
         Connection jdbcConnection = DriverManager.getConnection(
                 "jdbc:oracle:thin:@localhost:1521:xe", "imdb", "bjarne");
-        KVStore kvstore = KVStoreFactory.getStore(new KVStoreConfig("kvstore", "localhost:5000"));
-
         getMovies(jdbcConnection, kvstore);
         getActors(jdbcConnection, kvstore);
         getRoles(jdbcConnection, kvstore);
-
-        jdbcConnection.close();
-        kvstore.close();
     }
 
     public static void getMovies(Connection jdbcConnection, KVStore kvstore) throws SQLException{
