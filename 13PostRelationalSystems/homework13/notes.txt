@@ -2,18 +2,26 @@ Nate Bender, Homework13
 
 a. What type of noSQL database system is Oracle’s NoSQL product, KVLite?
 
-
+	KVLite is a key-value store.
 
 b. The Internet Movie DataBase (imdb.com) is currently implemented in mySQL. 
 If you were required to port it to a noSQL system, which of the noSQL system types would you 
 suggest? Explain your answer.
 
-
+	A graph database would be the most effective in this case. Connected data, such as movies, their actors,
+	and other roles, are pretty relational pieces of data. Queries are not easily written in the other three
+	types of noSQL systems.
 
 c. Could you (efficiently) reuse the same key-value structure for exercise 13.1.d (above) and 
 its “opposite”, i.e., get the movies in which a given actor is cast? Why or why not?
 
-
+	Not in this case. Actors are not a part of the major key of a movie. In order for this to work, the list
+	of actors in a movie would need to each be a subkey.
 
 d. NoSQL databases are often referred to as schema-less or schema-free. Explain what this 
 means using examples from your homework solution.
+
+	There is technically no schema in this KV implementation, but we have sort of forced a structure on it
+	using major and minor keys. Additionally, the KV store has no checking on data types or rules about what
+	can be inserted where. An movie with completely incorrect, out of 'range', or incorrectly typed data 
+	would still be happily inserted into any kv pair.
