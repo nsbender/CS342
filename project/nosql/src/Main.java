@@ -36,29 +36,39 @@ public class Main {
                 + ", " + resultSet.getString(7) + ", " + resultSet.getString(8));
 
             // Store beer name
-            Key nameKey = Key.createKey(Arrays.asList("beer"), Arrays.asList(resultSet.getString(1), "name"));
-            Value nameValue = Value.createValue(resultSet.getString(2).getBytes());
-            kvstore.put(nameKey, nameValue);
+            if (resultSet.getString(2) != null) {
+                Key nameKey = Key.createKey(Arrays.asList("beer"), Arrays.asList(resultSet.getString(1), "name"));
+                Value nameValue = Value.createValue(resultSet.getString(2).getBytes());
+                kvstore.put(nameKey, nameValue);
+            }
             // Store breweryId
             Key breweryKey = Key.createKey(Arrays.asList("beer"), Arrays.asList(resultSet.getString(1), "breweryId"));
             Value breweryValue = Value.createValue(resultSet.getString(3).getBytes());
             kvstore.put(breweryKey, breweryValue);
             // Store beer variety
-            Key varietyKey = Key.createKey(Arrays.asList("beer"), Arrays.asList(resultSet.getString(1), "variety"));
-            Value varietyValue = Value.createValue(resultSet.getString(4).getBytes());
-            kvstore.put(varietyKey, varietyValue);
+            if (resultSet.getString(4) != null) {
+                Key varietyKey = Key.createKey(Arrays.asList("beer"), Arrays.asList(resultSet.getString(1), "variety"));
+                Value varietyValue = Value.createValue(resultSet.getString(4).getBytes());
+                kvstore.put(varietyKey, varietyValue);
+            }
             // Store beer IBU
-            Key ibuKey = Key.createKey(Arrays.asList("beer"), Arrays.asList(resultSet.getString(1), "ibu"));
-            Value ibuValue = Value.createValue(resultSet.getString(5).getBytes());
-            kvstore.put(ibuKey, ibuValue);
-            // Store beer production statue
-            Key inproductionKey = Key.createKey(Arrays.asList("beer"), Arrays.asList(resultSet.getString(1), "inProduction"));
-            Value inproductionValue = Value.createValue(resultSet.getString(6).getBytes());
-            kvstore.put(inproductionKey, inproductionValue);
+            if (resultSet.getString(5) != null) {
+                Key ibuKey = Key.createKey(Arrays.asList("beer"), Arrays.asList(resultSet.getString(1), "ibu"));
+                Value ibuValue = Value.createValue(resultSet.getString(5).getBytes());
+                kvstore.put(ibuKey, ibuValue);
+            }
+            // Store beer production status
+            if (resultSet.getString(6) != null) {
+                Key inproductionKey = Key.createKey(Arrays.asList("beer"), Arrays.asList(resultSet.getString(1), "inProduction"));
+                Value inproductionValue = Value.createValue(resultSet.getString(6).getBytes());
+                kvstore.put(inproductionKey, inproductionValue);
+            }
             // Store introduction date
-            Key introducedKey = Key.createKey(Arrays.asList("beer"), Arrays.asList(resultSet.getString(1), "introduced"));
-            Value introducedValue = Value.createValue(resultSet.getString(7).getBytes());
-            kvstore.put(introducedKey, introducedValue);
+            if (resultSet.getString(7) != null) {
+                Key introducedKey = Key.createKey(Arrays.asList("beer"), Arrays.asList(resultSet.getString(1), "introduced"));
+                Value introducedValue = Value.createValue(resultSet.getString(7).getBytes());
+                kvstore.put(introducedKey, introducedValue);
+            }
             // Store ABV
             Key abvKey = Key.createKey(Arrays.asList("beer"), Arrays.asList(resultSet.getString(1), "abv"));
             Value abvValue = Value.createValue(resultSet.getString(8).getBytes());
@@ -80,9 +90,11 @@ public class Main {
             Value nameValue = Value.createValue(resultSet.getString(2).getBytes());
             kvstore.put(nameKey, nameValue);
             // Store founding date
-            Key foundingKey = Key.createKey(Arrays.asList("brewery"), Arrays.asList(resultSet.getString(1), "yearFounded"));
-            Value foundingValue = Value.createValue(resultSet.getString(3).getBytes());
-            kvstore.put(foundingKey, foundingValue);
+            if (resultSet.getString(3) != null) {
+                Key foundingKey = Key.createKey(Arrays.asList("brewery"), Arrays.asList(resultSet.getString(1), "yearFounded"));
+                Value foundingValue = Value.createValue(resultSet.getString(3).getBytes());
+                kvstore.put(foundingKey, foundingValue);
+            }
             // Store founding date
             Key countryKey = Key.createKey(Arrays.asList("brewery"), Arrays.asList(resultSet.getString(1), "country"));
             Value countryValue = Value.createValue(resultSet.getString(4).getBytes());
@@ -92,13 +104,17 @@ public class Main {
             Value cityValue = Value.createValue(resultSet.getString(5).getBytes());
             kvstore.put(cityKey, cityValue);
             // Store parent Company ID
-            Key parentKey = Key.createKey(Arrays.asList("brewery"), Arrays.asList(resultSet.getString(1), "parentId"));
-            Value parentValue = Value.createValue(resultSet.getString(6).getBytes());
-            kvstore.put(parentKey, parentValue);
+            if (resultSet.getString(6) != null) {
+                Key parentKey = Key.createKey(Arrays.asList("brewery"), Arrays.asList(resultSet.getString(1), "parentId"));
+                Value parentValue = Value.createValue(resultSet.getString(6).getBytes());
+                kvstore.put(parentKey, parentValue);
+            }
             // Store brewery website address
-            Key addressKey = Key.createKey(Arrays.asList("brewery"), Arrays.asList(resultSet.getString(1), "website"));
-            Value addressValue = Value.createValue(resultSet.getString(6).getBytes());
-            kvstore.put(addressKey, addressValue);
+            if (resultSet.getString(6) != null) {
+                Key addressKey = Key.createKey(Arrays.asList("brewery"), Arrays.asList(resultSet.getString(1), "website"));
+                Value addressValue = Value.createValue(resultSet.getString(6).getBytes());
+                kvstore.put(addressKey, addressValue);
+            }
         }
     }
 
@@ -122,7 +138,6 @@ public class Main {
 
     public static void queryData(KVStore kvstore){
         Key key = Key.createKey(Arrays.asList("brewery"), Arrays.asList());
-        System.out.println(kvstore.multiGet(key, null, null).toString());
 
         getBreweriesOrderedByYear(kvstore);
         getBreweryBeers(kvstore);
@@ -174,7 +189,7 @@ public class Main {
             System.out.println(d);
             for (String brewery : dates.get(d)) {
                 ArrayList<String> p = breweries.get(brewery);
-                System.out.println("\t" + brewery + ": " + p.get(0) + " " + p.get(1));
+                System.out.println("\t" + brewery + ": " + p.get(0));
             }
         }
     }
@@ -191,9 +206,9 @@ public class Main {
         for (Map.Entry<Key, ValueVersion> field : fields.entrySet()) {
             String beers = new String(field.getValue().getValue().getValue());
             String[] beersArray = beers.split(", ");
-            for (String c : beersArray) {
-                String beerName = new String(store.get(Key.createKey(Arrays.asList("beer"), Arrays.asList(c, "name"))).getValue().getValue());
-                System.out.println("\t" + c + "\t" + beerName);
+            for (String b : beersArray) {
+                String beerName = new String(store.get(Key.createKey(Arrays.asList("beer"), Arrays.asList(b, "name"))).getValue().getValue());
+                System.out.println("\t" + b + "\t" + beerName);
             }
         }
 
