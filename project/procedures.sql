@@ -1,4 +1,4 @@
-CREATE OR REPALCE PROCEDURE DeleteBeer (beerId in integer) AS
+CREATE OR REPLACE PROCEDURE DeleteBeer (beerId in integer) AS
 BEGIN
 	LOCK TABLE Beer IN SHARE MODE;
 	LOCK TABLE DistributorBeer IN SHARE MODE;

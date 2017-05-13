@@ -1,0 +1,4 @@
+This J2EE application provides a RESTful interface to access the database by. Instead of using a database connector, and running queries directly on the database, users and application developers can make remote calls over the
+internet. Data can be analyzed at the business layer or even the website making the requests instead of relying
+on the database to catch mistakes. 
+

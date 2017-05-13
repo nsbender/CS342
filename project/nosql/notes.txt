@@ -1,0 +1,18 @@
+﻿This nosql implementation of the beerdb includes all beers, breweries, and distributors. These are the primary 
+tables in the database with the most useful information. From these tables, users can still learn all information 
+about a beer, information about who made it, and information about the people that distribute beer. KVLite is a poor
+way to implement this schema since the data in the BeerDB is highly relational, and much of the data relies on its
+type in order to calculate averages, sums, etc. With a typeless KV store, this data all needs to be extracted from
+strings before it is useful.
+
+The queries implemented in this nosql system are as follow:
+
+The first finds unique breweries and sorts them by the year (ascending) in which they were founded. This is useful
+for when determining experience and potentailly beer quality from one brewery to the next. If a brewery has been
+around for a long time, they likely have more brewing experience. Additionally, this data would be useful in 
+tracking historical data, such as how many unique beers a brewery has created in its history.
+
+The second categorizes beers by the brewery that produced them. This data is useful for seeing all beers for a 
+particularl brewery. If a consumer/critic is trying to determine what else to try by this brewery, they now
+have a definitive list. If distributors are trying to see all of their options for what to stock for a particular
+brewery, they now can.
