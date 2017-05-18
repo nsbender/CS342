@@ -15,15 +15,36 @@ Distributors is all ficticious data (albiet possible). This may eventually be so
 by community input, or from retailer/Distributors' websites. Beer Ingredients are pulled
 from the brewery's website descriptions of the beer.
 
-My database is currently in BCNF as it has the following attributes:
+My database is currently in 4NF as it has the following attributes:
 1 - Each attribute of every table is atomic and only contains one value of its
   domain.
 2 - No table has dependencies on more than one of its candidate keys.
 3 - Each tables attributes are determined only by their candidate keys
   and not by any non-prime attributes.
 3.5 - No tables have overlapping candidate keys.
+4 - There are no non-trivial dependencies other than the candidate key.
 
-I have chosen BCNF for my database since the concept of beers and breweries
+I have chosen 4NF for my database since the concept of beers and breweries
 can easily be broken up into multiple tables each with their own non-overlapping
 attributes, and they can easily reference eachother without having too many functionl
 dependencies.
+
+Consider the Beer table:
+
+Beer(
+  id integer PRIMARY KEY,
+  name varchar(64),
+  breweryId integer REFERENCES Brewery(id),
+  variety varchar(32),
+  ibu integer,
+  inProduction char,
+  introduced date,
+  abv decimal(4,2)
+);
+
+Each entry in the table will not have multiple variations. For example, there will not be one
+beer with two ABVs listed as two separate rows in the table.
+
+Similarly, the Distributor table is not set up to have each distributor listed every single
+time a new beer is sold by them. Instead, there is a distributor beer table in which each entry
+(BeerID, DistributorID, Quantity, Price) serves as the candidate key.
