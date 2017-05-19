@@ -4,10 +4,17 @@ import java.util.*;
 import oracle.kv.*;
 
 /**
- * Created by nsb2 on 5/5/2017.
+ * @author Nate Bender
+ * Created Spring 2017
+ * Uses a local instance of KVlite to load the beerdb from Oracle and store it's tables
+ * in a tree of pairs.
  */
 public class Main {
 
+    /**
+     * Call the methods that load the kvstore from oracle after making a connection to the kvlite instance
+     * @return none
+     */
     public static void main(String[] args) throws SQLException{
         KVStore beerStore = KVStoreFactory.getStore(new KVStoreConfig("kvstore", "localhost:5000"));
         loadData(beerStore);
@@ -15,6 +22,12 @@ public class Main {
         beerStore.close();
     }
 
+    /**
+     * Load the data from the Oracle database into the KVstore
+     *
+     * @param the KVStore instance to connect to
+     * @return none
+     */
     public static void loadData(KVStore kvstore) throws SQLException{
         Connection jdbcConnection = DriverManager.getConnection(
                 "jdbc:oracle:thin:@//localhost:1521/XE", "beerdb", "bjarne");
@@ -26,6 +39,13 @@ public class Main {
         jdbcConnection.close();
     }
 
+    /**
+     * Load the beer keypairs from the Oracle beerdb Database
+     *
+     * @param The KVstore instance to load into
+     * @param The JDBC connection to the beerdb
+     * @return none
+     */
     public static void loadBeer(KVStore kvstore, Connection jdbcConnection) throws SQLException{
         Statement jdbcStatement = jdbcConnection.createStatement();
         ResultSet resultSet = jdbcStatement.executeQuery("SELECT id, name, breweryId, variety, ibu, inProduction, introduced, abv FROM Beer");
@@ -76,6 +96,13 @@ public class Main {
         }
     }
 
+    /**
+     * Load the breweries keypairs from the Oracle beerdb Database
+     *
+     * @param The KVstore instance to load into
+     * @param The JDBC connection to the beerdb
+     * @return none
+     */
     public static void loadBreweries(KVStore kvstore, Connection jdbcConnection) throws SQLException{
         Statement jdbcStatement = jdbcConnection.createStatement();
         ResultSet resultSet = jdbcStatement.executeQuery("SELECT id, name, yearFounded, country, city, parentId, website FROM Brewery");
@@ -118,6 +145,13 @@ public class Main {
         }
     }
 
+    /**
+     * Load the distributors keypairs from the Oracle beerdb Database
+     *
+     * @param The KVstore instance to load into
+     * @param The JDBC connection to the beerdb
+     * @return none
+     */
     public static void loadDistributors(KVStore kvstore, Connection jdbcConnection) throws SQLException{
         Statement jdbcStatement = jdbcConnection.createStatement();
         ResultSet resultSet = jdbcStatement.executeQuery("SELECT id, name, yearFounded, country, city, parentId, website FROM Brewery");
@@ -136,6 +170,12 @@ public class Main {
         }
     }
 
+    /**
+     * Test the newly loaded KVStore by querying it
+     *
+     * @param The KVstore instance to query from
+     * @return none
+     */
     public static void queryData(KVStore kvstore){
         Key key = Key.createKey(Arrays.asList("brewery"), Arrays.asList());
 
@@ -143,6 +183,12 @@ public class Main {
         getBreweryBeers(kvstore);
     }
 
+    /**
+     * Query the brewery keypairs and print them in chronological order by date founded
+     *
+     * @param The KVstore instance to query from
+     * @return none
+     */
     public static void getBreweriesOrderedByYear(KVStore store){
         System.out.println("Retrieving breweries by their age...\n");
 
@@ -194,6 +240,12 @@ public class Main {
         }
     }
 
+    /**
+     * Query the brewery and beer keypairs and print all the beers of each brewery, grouped by brewery
+     *
+     * @param The KVstore instance to query from
+     * @return none
+     */
     public static void getBreweryBeers(KVStore store){
         System.out.println("Retrieving beers by brewery...\n");
         String brewery = new String(store.get(Key.createKey(Arrays.asList("brewery"),
@@ -211,6 +263,5 @@ public class Main {
                 System.out.println("\t" + b + "\t" + beerName);
             }
         }
-
     }
 }

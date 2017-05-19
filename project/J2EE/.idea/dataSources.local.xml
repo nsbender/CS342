@@ -8,7 +8,7 @@
       </database-info>
       <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
       <user-name>beerdb</user-name>
-      <introspection-schemas>*:CPDB,PUBLIC,SYS,SYSTEM</introspection-schemas>
+      <introspection-schemas>*:BEERDB,CPDB,PUBLIC,SYS,SYSTEM</introspection-schemas>
       <resolve-scope>*:CPDB,PUBLIC</resolve-scope>
       <unqualified-resolve-schemas>*:CPDB,PUBLIC</unqualified-resolve-schemas>
     </data-source>
