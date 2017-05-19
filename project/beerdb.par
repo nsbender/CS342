@@ -1,0 +1,4 @@
+DIRECTORY=dpump_dir
+DUMPFILE=beerdb.dmp
+LOGFILE=beerdb.log
+TABLES=beerdb.Beer,beerdb.Brewery,beerdb.Distributor,beerdb.ParentCompany,beerdb.Ingredient,beerdb.Rating,beerdb.DistributorBeer,beerdb.BeerIngredient

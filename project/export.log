@@ -1,0 +1,30 @@
+;;; 
+Export: Release 11.2.0.2.0 - Production on Thu May 18 21:04:45 2017
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+;;; 
+Connected to: Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+Starting "BEERDB"."SYS_EXPORT_SCHEMA_01":  beerdb/******** DIRECTORY=dpump_dir dumpfile=beerdb.dmp 
+Estimate in progress using BLOCKS method...
+Processing object type SCHEMA_EXPORT/TABLE/TABLE_DATA
+Total estimation using BLOCKS method: 512 KB
+Processing object type SCHEMA_EXPORT/PRE_SCHEMA/PROCACT_SCHEMA
+Processing object type SCHEMA_EXPORT/TABLE/TABLE
+Processing object type SCHEMA_EXPORT/TABLE/INDEX/INDEX
+Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
+Processing object type SCHEMA_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS
+Processing object type SCHEMA_EXPORT/TABLE/COMMENT
+Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/REF_CONSTRAINT
+. . exported "BEERDB"."BEER"                             8.398 KB      12 rows
+. . exported "BEERDB"."BEERINGREDIENT"                   5.507 KB       6 rows
+. . exported "BEERDB"."BREWERY"                          8.445 KB      12 rows
+. . exported "BEERDB"."DISTRIBUTOR"                      6.671 KB      12 rows
+. . exported "BEERDB"."DISTRIBUTORBEER"                    6.5 KB      15 rows
+. . exported "BEERDB"."INGREDIENT"                       6.093 KB      14 rows
+. . exported "BEERDB"."PARENTCOMPANY"                    6.046 KB       5 rows
+. . exported "BEERDB"."RATING"                           6.679 KB      15 rows
+Master table "BEERDB"."SYS_EXPORT_SCHEMA_01" successfully loaded/unloaded
+******************************************************************************
+Dump file set for BEERDB.SYS_EXPORT_SCHEMA_01 is:
+  C:\USERS\NATE BENDER`\DOCUMENTS\HOMEWORK\CS342\PROJECT\BEERDB.DMP
+Job "BEERDB"."SYS_EXPORT_SCHEMA_01" successfully completed at 21:05:02

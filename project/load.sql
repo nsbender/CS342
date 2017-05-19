@@ -2,14 +2,14 @@
 -- See ../README.md for details.
 
 -- Drop the previous table declarations.
-@&grdb\drop
+@drop
 commit;
 -- Reload the table declarations.
-@&grdb\schema
+@schema
 commit;
 -- Load the table data.
-@&grdb\data
+@data
 commit;
 -- Add constraints that cannot be added before the data.
-@&grdb\constraints
+--@&beerdb\constraints
 commit;
