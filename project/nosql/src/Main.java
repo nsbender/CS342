@@ -41,6 +41,7 @@ public class Main {
 
     /**
      * Load the beer keypairs from the Oracle beerdb Database
+	 * Keypairs stored as /beer/-/id
      *
      * @param The KVstore instance to load into
      * @param The JDBC connection to the beerdb
@@ -98,6 +99,7 @@ public class Main {
 
     /**
      * Load the breweries keypairs from the Oracle beerdb Database
+	 * Keypairs stored as /brewery/-/id
      *
      * @param The KVstore instance to load into
      * @param The JDBC connection to the beerdb
@@ -147,6 +149,7 @@ public class Main {
 
     /**
      * Load the distributors keypairs from the Oracle beerdb Database
+	 * Keypairs stored as /distributor/-/id
      *
      * @param The KVstore instance to load into
      * @param The JDBC connection to the beerdb
